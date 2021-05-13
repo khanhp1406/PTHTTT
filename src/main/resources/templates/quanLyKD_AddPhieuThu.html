@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
+<th:link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+	crossorigin="anonymous" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet" />
+<title>Quản Lý Kinh Doanh</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{/KD_addPhieuThu.css}" />
+</head>
+<body class="screen">
+	<div class="header">
+		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
+			class="header__username"></span> <a th:href="@{/logout}"
+			class="header__logout">Đăng xuất</a>
+	</div>
+
+	<div class="slider">
+		<a th:href="@{/phieudathang}">Phiếu Đặt Hàng</a>
+	</div>
+	<div class="content">
+		<form th:action="@{/active_AddPhieuThu}" method='GET'
+			class="content__form">
+			<div class="content__table">
+				<div>
+					<span>Mã Số Phiếu</span> <input type='text' th:name="soPhieu" />
+				</div>
+				<div>
+					<span>Loại Phiếu</span> <input type='text' th:name="loaiPhieu" />
+				</div>
+				<div>
+					<span>Ngày Tạo Phiếu</span> <input type='text' th:name="ngay" />
+				</div>
+				<div>
+					<span>Nội Dung </span> <input type='text' th:name="noiDung" />
+				</div>
+				<div>
+					<span>Chú Thích</span> <input type='text' th:name="chuThich" />
+				</div>
+				<div>
+					<span>Tiền Đặt Cọc</span> <input type='text' th:name="tienDatCoc" />
+				</div>
+				<div>
+					<span>Mã Phiếu Đặt Hàng</span> <input type='text'
+						th:value="${phieudathangID}" th:name="phieuDatHangID"
+						th:readonly="true" />
+				</div>
+				<div>
+					<input name="submit" type="submit" value="submit" />
+				</div>
+			</div>
+		</form>
+	</div>
+	<button class="info__btn">
+		<i class="fas fa-info"></i>
+	</button>
+	<button class="info__close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="info__doc">
+		<ul class="info__list">
+			<li class="info__list-item">
+				<h3 class="info__title ">Tên các thành viên</h3>
+			</li>
+			<li class="info__list-item"><span class="info__name">Nguyễn
+					Vũ Nghiêm</span></li>
+			<li class="info__list-item"><span class="info__name">Kiều
+					Văn Thông</span></li>
+			<li class="info__list-item"><span class="info__name">Hoàng
+					Thanh Hải</span></li>
+			<li class="info__list-item"><span class="info__name">Phạm
+					Ngọc Khánh</span></li>
+			<li class="info__list-item"><span class="info__name">Nguyễn
+					Thị Hiếu</span></li>
+			<li class="info__list-item"><span class="info__name">Vũ
+					Thị Ngọc Ánh</span></li>
+		</ul>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>

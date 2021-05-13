@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Quản Lý Kỹ Thuật</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="header">
+		<p th:text ="${session.hoTenKyThuat}" th:unless="${session==null}"></p>
+		<a th:href="@{/logout}">Đăng xuất</a>
+	</div>
+
+	<div class="slider">
+		<a th:href="@{/lenhsanxuat}">Phiếu Đặt Hàng</a> 
+	</div>
+	<div class="content">
+		<form th:action="@{/active_AddLenhSanXuat}" method='GET'>
+         <table>
+            <tr>
+               <td>Mã Phiếu Đặt Hàng</td>
+               <td><input type='text' th:value="${maPhieuDatHang}" th:name="maPhieuDatHang" th:readonly="true"/></td>
+            </tr>    
+             <tr>
+               <td>Ngày Bắt Đầu Sản Xuất</td>
+               <td><input type='text' th:name="ngayBatDauSP" /></td>
+            </tr>   
+             <tr>
+               <td>Ngày Xuất Sản Phẩm</td>
+               <td><input type='text' th:name="ngayXuatSP" /></td>
+            </tr>   
+             <tr>
+               <td>Trạng Thái</td>
+               <td><input type='text' th:name="trangThai" /></td>
+            </tr>   
+             <tr>
+               <td>Chú Thích</td>
+               <td><input type='text' th:name="chuThich" /></td>
+            </tr>   
+             <tr>
+               <td>Người Tạo Lệnh Sản Xuất</td>
+               <td><input type='text' th:value="${hoTenKyThuat}" th:name="tenNhanVien" th:readonly="true"/></td>
+            </tr>      
+            <tr>
+               <td><input name="submit" type="submit" value="submit" /></td>
+            </tr>
+         </table>
+      </form>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>

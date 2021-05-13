@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Quản Lý Sản Xuất</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+</head>
+<body>
+	<div class="header">
+	 	<p th:text ="${session.hoTenSanXuat}" th:unless="${session==null}"></p>
+		<a th:href="@{/logout}">Đăng xuất</a>
+	</div>
+
+	<div class="slider">
+		<a th:href="@{/sanpham_SX}">Danh Sách Sản Phẩm</a>
+	</div>
+	<div class="content">
+		<div class="table-container">
+			<div class="title">
+				<h3></h3>
+			</div>
+			<div class="table">
+				<table id="table1">
+					<tr>
+						<th>No</th>
+						<th>Mã Sản Phẩm</th>
+						<th>Tên Sản Phẩm</th>
+						<th>Khối Lượng</th>
+						<th>Độ Dài</th>
+						<th>Độ Rộng</th>
+						<th colspan="2"></th>
+					</tr>
+						<tr th:each="sp,state:${sps}">
+							<td th:utext="${state.count}"></td>
+							<td th:utext="${sp.maSP}"></td>
+							<td th:utext="${sp.tenSP}"></td>
+							<td th:utext="${sp.khoiLuong}"></td>
+							<td th:utext="${sp.doDai}"></td>
+							<td th:utext="${sp.doRong}"></td>
+							<td><a th:href="@{/listCongDoanSanXuat/}+${sp.ID}">Danh Sách Công Đoạn Sản Xuât</a></td>
+							<td><a th:href="@{/addCongDoanSanXuat/}+${sp.ID}">Thêm Công Đoạn Sản Xuât</a></td>
+							<td><a th:href="@{/listBangDinhMuc/}+${sp.ID}">Danh Sách Bảng Định Mức</a></td>
+							<td><a th:href="@{/addBangDinhMuc/}+${sp.ID}">Thêm Bảng Định Mức</a></td>
+						</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>

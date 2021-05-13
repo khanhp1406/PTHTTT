@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Quản Lý Thu Mua</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+</head>
+<body>
+	<div class="header">
+		<p th:text="${session.hoTenThuMua}" th:unless="${session==null}"></p>
+		<a th:href="@{/logout}">Đăng xuất</a>
+	</div>
+
+	<div class="slider">
+		<a th:href="@{/lenhsanxuat_TM}">Lệnh Sản Xuất</a>
+	</div>
+	<div class="content">
+		<div class="table-container">
+			<div class="title">
+				<h3></h3>
+			</div>
+			<div class="table">
+				<table id="table1">
+					<tr>
+						<th>No</th>
+						<th>Mã Phiếu Mua NVL</th>
+						<th>Số Phiếu</th>
+						<th>Loại Phiếu</th>
+						<th>Ngày Lập</th>
+						<th>Nội Dung</th>
+						<th>Giá Thành</th>
+						<th colspan="2"><a th:href="@{/AddPhieuChi}">Tạo Phiếu Chi</a></th>
+					</tr>
+					<tr th:each="pc,state:${pcs}">
+						<td th:utext="${state.count}"></td>
+						<td th:utext="${pc.phieuMuaNVL.getMaPhieu()}"></td>
+						<td th:utext="${pc.soPhieu}"></td>
+						<td th:utext="${pc.loaiPhieu}"></td>
+						<td th:utext="${pc.ngay}"></td>
+						<td th:utext="${pc.noiDung}"></td>
+						<td th:utext="${pc.giaThanh}"></td>
+						<td><a th:href="@{/editPhieuChi/}+${pc.ID}"><i
+								class="fa fa-edit"></i></a></td>
+						<td><a th:href="@{/removePhieuChi/}+${pc.ID}"><i
+								class="fa fa-remove"></i></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Quản Lý Thu mua</title>
+<meta charset="UTF-8" />
+</head>
+<div class="header">
+	<p th:text="${session.hoTenThuMua}" th:unless="${session==null}"></p>
+	<a th:href="@{/logout}">Đăng xuất</a>
+</div>
+
+<div class="slider">
+	<a th:href="@{/sanpham_SX}">Phiếu Đặt Hàng</a>
+</div>
+<div class="content">
+	<form th:action="@{/active_EditPhieuMuaNVL}" method='GET'>
+		<table>
+			<tr>
+				<td>ID</td>
+				<td><input type='text' th:value="${ID}" th:name="ID" th:readonly="true" /></td>
+			</tr>
+			<tr>
+				<td>Mã Phiếu</td>
+				<td><input type='text' th:value="${maPhieu}" th:name="maPhieu" /></td>
+			</tr>
+			<tr>
+				<td>Mã Lệnh Sản Xuất</td>
+				<td><input type='text' th:value="${IDLenhSanXuat}" th:name="IDLenhSanXuat" th:readonly="true"/></td>
+			</tr>
+			<tr>
+				<td>Ngày Lập</td>
+				<td><input type='text'th:value="${ngayLap}" th:name="ngayLap" /></td>
+			</tr>
+			<tr>
+				<td>Chú Thích</td>
+				<td><input type='text' th:value="${chuThich}" th:name="chuThich" /></td>
+			</tr>
+			<tr>
+				<td>Tên Nhân Viên</td>
+				<td><input type='text' th:value="${tenNhanVien}" th:name="tenNhanVien" th:readonly="true"/></td>
+			</tr>
+			<tr>
+				<td><input name="submit" type="submit" value="submit" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="footer"></div>
+</body>
+</html>

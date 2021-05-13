@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Quản Lý Sản Xuất</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+</head>
+<body>
+	<div class="header">
+	 	<p th:text ="${session.hoTenSanXuat}" th:unless="${session==null}"></p>
+		<a th:href="@{/logout}">Đăng xuất</a>
+	</div>
+
+	<div class="slider">
+		<a th:href="@{/sanpham_SX}">Danh Sách Sản Phẩm</a>
+	</div>
+	<div class="content">
+		<div class="table-container">
+			<div class="title">
+				<h3></h3>
+			</div>
+			<div class="table">
+				<table id="table1">
+					<tr>
+						<th>No</th>
+						<th>Tên Sản Phẩm</th>
+						<th>Tên NVL</th>
+						<th>Khối Lượng</th>
+						<th>Độ Dài</th>
+						<th>Độ Rộng</th>
+						<th>Số Lượng NVL</th>
+						<th>Nhân Viên Lên BDM</th>
+						<th colspan="2"></th>
+					</tr>
+						<tr th:each="bdm,state:${bdms}">
+							<td th:utext="${state.count}"></td>
+							<td th:utext="${bdm.sanPham.getTenSP()}"></td>
+							<td th:utext="${bdm.nguyenVatLieu.getTenNVL()}"></td>
+							<td th:utext="${bdm.nguyenVatLieu.getKhoiLuong()}"></td>
+							<td th:utext="${bdm.nguyenVatLieu.getDoDai()}"></td>
+							<td th:utext="${bdm.nguyenVatLieu.getDoRong()}"></td>
+							<td th:utext="${bdm.soLuong}"></td>
+							<td th:utext="${bdm.nhanVien.getHoTen()}"></td>
+							<td><a th:href="@{/editBangDinhMuc/}+${bdm.ID}"><i
+								class="fa fa-edit"></i></a></td>
+							<td><a th:href="@{/removeBangDinhMuc/}+${bdm.ID}"><i
+								class="fa fa-remove"></i></a></td>
+						</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>
