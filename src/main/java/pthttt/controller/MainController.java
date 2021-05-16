@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,15 +25,15 @@ public class MainController {
 		return "loginPage";
 	}
 
-	@RequestMapping(value = { "/CheckLogin" }, method = RequestMethod.POST)
-	public String processLogin(@RequestParam("tenDangNhap") String tenDangNhap, //
+	@PostMapping("/CheckLogin")
+	public String processLogin(@RequestParam("tenDangNhap") String tenDangNhap, 
 			@RequestParam("matKhau") String matKhau, @ModelAttribute NhanVien nhanVien, HttpSession session) {
 
 		if (nhanVienService.checkNhanVien(tenDangNhap, matKhau)) {
 			nhanVien = nhanVienService.findNhanVien(tenDangNhap, matKhau);
 			if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKinhDoanh")) {
 				session.setAttribute("hoTenKinhDoanh", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/PhieuDatDang";
+				return "redirect:/PhieuDatHang";
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKyThuat")) {
 				session.setAttribute("hoTenKyThuat", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
 				return "redirect:/PhieuDatHang_KT";
@@ -50,7 +51,7 @@ public class MainController {
 				return "redirect:/ListNhanVien_QLy";
 			}
 		}
-		return "LoginPage";
+		return "redirect:/LoginPage";
 	}
 
 	@GetMapping("/LogOut")
