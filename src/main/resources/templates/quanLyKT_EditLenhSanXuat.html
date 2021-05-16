@@ -1,58 +1,93 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet"
+	href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
+<th:link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+	crossorigin="anonymous" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet" />
 <title>Quản Lý Sản Xuất</title>
 <meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{/KD_addPDH.css}">
 </head>
-<div class="header">
-	<p th:text="${session.hoTenKyThuat}" th:unless="${session==null}"></p>
-	<a th:href="@{/logout}">Đăng xuất</a>
-</div>
+<body class="screen">
+	<div class="header">
+		<p th:text="${session.hoTenKyThuat}" th:unless="${session==null}"
+			class="header__username"></p>
+		<a th:href="@{/phieuDatHang_KT}" class="header__main">Phiếu Đặt
+			Hàng</a> <a th:href="@{/logout}" class="header__logout">Đăng xuất</a>
+	</div>
 
-<div class="slider">
-	<a th:href="@{/phieudathang_KT}">Phiếu Đặt Hàng</a>
-</div>
-<div class="content">
-	<form th:action="@{/active_EditLenhSanXuat}" method='GET'>
-		<table>
-			<tr>
-				<td>ID</td>
-				<td><input type='text' th:value="${ID}" th:name="ID"
-					th:readonly="true" /></td>
-			</tr>
-			<tr>
-				<td>Người Tạo Lệnh Sản Phẩm</td>
-				<td><input type='text' th:value="${tenNhanVien}"
-					th:name="tenNhanVien" th:readonly="true" /></td>
-			</tr>
-			<tr>
-				<td>Mã Phiếu Đặt Hàng</td>
-				<td><input type='text' th:value="${maPhieuDatHang}"
-					th:name="maPhieuDatHang" th:readonly="true" /></td>
-			</tr>
-			<tr>
-				<td>Ngày Bắt Đầu Sản Phẩm</td>
-				<td><input type='text' th:value="${ngayBatDauSP}"
-					th:name="ngayBatDauSP" /></td>
-			</tr>
-			<tr>
-				<td>Ngày Xuất Sản Phẩm</td>
-				<td><input type='text' th:value="${ngayXuatSP}" th:name="ngayXuatSP" /></td>
-			</tr>
-			<tr>
-				<td>Trạng Thái</td>
-				<td><input type='text' th:value="${trangThai}" th:name="trangThai" /></td>
-			</tr>
-			<tr>
-				<td>Chú Thích</td>
-				<td><input type='text' th:value="${chuThich}" th:name="chuThich" /></td>
-			</tr>
-			<tr>
-				<td><input name="submit" type="submit" value="submit" /></td>
-			</tr>
-		</table>
-	</form>
-</div>
-<div class="footer"></div>
+	<div class="slider">Sửa Lệnh Sản Xuất</div>
+	<div class="content">
+		<form th:action="@{/active_EditLenhSanXuat}" method='GET'
+			class="content__form">
+			<div class="content__table">
+				<div>
+					<span>ID</span> <input type='text' th:value="${ID}" th:name="ID"
+						th:readonly="true" />
+				</div>
+				<div>
+					<span>Người Tạo Lệnh Sản Phẩm</span> <input type='text'
+						th:value="${tenNhanVien}" th:name="tenNhanVien" th:readonly="true" />
+				</div>
+				<div>
+					<span>Mã Phiếu Đặt Hàng</span> <input type='text'
+						th:value="${maPhieuDatHang}" th:name="maPhieuDatHang"
+						th:readonly="true" />
+				</div>
+				<div>
+					<span>Ngày Bắt Đầu Sản Phẩm</span> <input type='text'
+						th:value="${ngayBatDauSP}" th:name="ngayBatDauSP" />
+				</div>
+				<div>
+					<span>Ngày Xuất Sản Phẩm</span> <input type='text'
+						th:value="${ngayXuatSP}" th:name="ngayXuatSP" />
+				</div>
+				<div>
+					<span>Trạng Thái</span> <input type='text' th:value="${trangThai}"
+						th:name="trangThai" />
+				</div>
+				<div>
+					<span>Chú Thích</span> <input type='text' th:value="${chuThich}"
+						th:name="chuThich" />
+				</div>
+				<div>
+					<input name="submit" type="submit" value="submit" />
+				</div>
+			</div>
+		</form>
+	</div>
+	<button class="info__btn">
+		<i class="fas fa-info"></i>
+	</button>
+	<button class="info__close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="info__doc">
+		<ul class="info__list">
+			<li class="info__list-item">
+				<h3 class="info__title ">Tên các thành viên</h3>
+			</li>
+			<li class="info__list-item"><span class="info__name">Nguyễn
+					Vũ Nghiêm</span></li>
+			<li class="info__list-item"><span class="info__name">Kiều
+					Văn Thông</span></li>
+			<li class="info__list-item"><span class="info__name">Hoàng
+					Thanh Hải</span></li>
+			<li class="info__list-item"><span class="info__name">Phạm
+					Ngọc Khánh</span></li>
+			<li class="info__list-item"><span class="info__name">Nguyễn
+					Thị Hiếu</span></li>
+			<li class="info__list-item"><span class="info__name">Vũ
+					Thị Ngọc Ánh</span></li>
+		</ul>
+	</div>
+	<script th:src="@{/index.js}"></script>
+	<div class="footer"></div>
 </body>
 </html>

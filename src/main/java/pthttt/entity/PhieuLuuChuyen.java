@@ -33,12 +33,6 @@ public class PhieuLuuChuyen implements Serializable{
 	
 	@Column(name = "ChuThich",nullable = false)
 	private String chuThich;
-	
-	@Column(name = "NoiDen",nullable = false)
-	private String noiDen;
-	
-	@Column(name = "NoiDi",nullable = false)
-	private String noiDi;
 
 	public int getID() {
 		return ID;
@@ -80,21 +74,4 @@ public class PhieuLuuChuyen implements Serializable{
 		this.chuThich = chuThich;
 	}
 
-	public String getNoiDen() {
-		return noiDen;
-	}
-
-	public void setNoiDen(String noiDen) {
-		this.noiDen = noiDen;
-	}
-
-	public String getNoiDi() {
-		return noiDi;
-	}
-
-	public void setNoiDi(String noiDi) {
-		this.noiDi = noiDi;
-	}
-	
-	
 }

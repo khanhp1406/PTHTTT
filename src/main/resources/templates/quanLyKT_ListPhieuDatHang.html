@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Quản Lý Kỹ Thuật</title>
+<title>Quản Lý Sản Xuất</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
@@ -16,18 +16,17 @@
 </head>
 <body class="screen">
 	<div class="header">
-		<span th:text="${session.hoTenKyThuat}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/logout}"
-			class="header__logout">Đăng xuất</a>
+		<p th:text="${session.hoTenKyThuat}" th:unless="${session==null}"
+			class="header__username"></p>
+		<a th:href="@{/phieuDatHang_KT}" class="header__main">Phiếu Đặt
+			Hàng</a> <a th:href="@{/logout}" class="header__logout">Đăng xuất</a>
 	</div>
 
-	<div class="slider">
-		<a th:href="@{/phieuDatHang_KT}">Phiếu Đặt Hàng</a>
-	</div>
+	<div class="slider">Danh Sách Phiếu Đặt Hàng</div>
 	<div class="content">
 		<div class="table-container">
 			<div class="title">
-				<h3>Phiếu Đặt Hàng</h3>
+				<h3></h3>
 			</div>
 			<div class="table">
 				<table id="table1">
@@ -42,7 +41,7 @@
 						<th>Trạng Thái</th>
 						<th>Ghi Chú</th>
 						<th>Tên người lập</th>
-						<th colspan="2"></th>
+						<th colspan="2">Chức năng</th>
 					</tr>
 					<tr th:each="pdh,state:${pdhs}">
 						<td th:utext="${state.count}"></td>
@@ -55,10 +54,10 @@
 						<td th:utext="${pdh.trangThai}"></td>
 						<td th:utext="${pdh.chuThich}"></td>
 						<td th:utext="${pdh.nhanVien.getHoTen()}"></td>
-						<td class="table__icon"><a
-							th:href="@{/listLenhSanXuat/}+${pdh.ID}">Danh Sách Lệnh Sản Xuất</a></td>
-						<td class="table__icon"><a
-							th:href="@{/addLenhSanXuat/}+${pdh.ID}">Tạo Lệnh Sản Xuất</a></td>
+						<td><a th:href="@{/addLenhSanXuat/}+${pdh.ID}">Thêm Lệnh
+								Sản Xuất</a></td>
+						<td><a th:href="@{/listLenhSanXuat/}+${pdh.ID}">Danh Sách
+								Lệnh Sản Xuất</a></td>
 					</tr>
 				</table>
 			</div>
@@ -89,6 +88,7 @@
 					Thị Ngọc Ánh</span></li>
 		</ul>
 	</div>
-	<script src="index.js"></script>
+	<script th:src="@{/index.js}"></script>
+	<div class="footer"></div>
 </body>
 </html>

@@ -15,14 +15,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pthttt.entity.BangDinhMuc;
 import pthttt.entity.CongDoanSX;
+import pthttt.entity.Kho;
 import pthttt.entity.NguyenVatLieu;
 import pthttt.entity.NhanVien;
+import pthttt.entity.PhieuLuuChuyen;
 import pthttt.entity.SanPham;
+import pthttt.entity.ThanhPham;
+import pthttt.entity.Xuong;
 import pthttt.service.BangDinhMucService;
 import pthttt.service.CongDoanSXService;
+import pthttt.service.KhoService;
 import pthttt.service.NguyenVatLieuService;
 import pthttt.service.NhanVienService;
+import pthttt.service.PhieuLuuChuyenService;
 import pthttt.service.SanPhamService;
+import pthttt.service.ThanhPhamService;
+import pthttt.service.XuongService;
 
 @Controller
 public class QLySanXuatController {
@@ -41,6 +49,18 @@ public class QLySanXuatController {
 
 	@Autowired
 	private NguyenVatLieuService nguyenVatLieuService;
+
+	@Autowired
+	private ThanhPhamService thanhPhamService;
+
+	@Autowired
+	private XuongService xuongService;
+
+	@Autowired
+	private KhoService khoService;
+
+	@Autowired
+	private PhieuLuuChuyenService phieuLuuChuyenService;
 
 	@GetMapping("/listSanPham_SX")
 	public String listSanPham(Model model) {
@@ -132,34 +152,37 @@ public class QLySanXuatController {
 	}
 
 	@GetMapping("/active_EditBangDinhMuc")
-	public String active_EditBangDinhMuc(@RequestParam("ID")int ID,@RequestParam("tenSanPham")String tenSanPham,@RequestParam("tenNVL")String tenNVL,//
-			@RequestParam("soLuong")int soluong,@RequestParam("hoTenSanXuat")String hoTenSanXuat,@ModelAttribute BangDinhMuc bangDinhMuc,//
-			@ModelAttribute SanPham sanPham,@ModelAttribute NhanVien nhanVien,@ModelAttribute NguyenVatLieu nguyenVatLieu) {
+	public String active_EditBangDinhMuc(@RequestParam("ID") int ID, @RequestParam("tenSanPham") String tenSanPham,
+			@RequestParam("tenNVL") String tenNVL, //
+			@RequestParam("soLuong") int soluong, @RequestParam("hoTenSanXuat") String hoTenSanXuat,
+			@ModelAttribute BangDinhMuc bangDinhMuc, //
+			@ModelAttribute SanPham sanPham, @ModelAttribute NhanVien nhanVien,
+			@ModelAttribute NguyenVatLieu nguyenVatLieu) {
 		sanPham = sanPhamService.findSanPham(tenSanPham);
 		nhanVien = nhanVienService.findNhanVien(hoTenSanXuat);
 		nguyenVatLieu = nguyenVatLieuService.findOneNVLByTenNVL(tenNVL);
-		
+
 		bangDinhMuc.setID(ID);
 		bangDinhMuc.setNguyenVatLieu(nguyenVatLieu);
 		bangDinhMuc.setNhanVien(nhanVien);
 		bangDinhMuc.setSanPham(sanPham);
 		bangDinhMuc.setSoLuong(soluong);
-		
+
 		bangDinhMucService.save(bangDinhMuc);
 		return "redirect:/listSanPham_SX";
 	}
-	
+
 	@GetMapping("/removeBangDinhMuc/{ID}")
-	public String removeBangDinhMuc(@PathVariable int ID,@ModelAttribute BangDinhMuc bangDinhMuc) {
-		bangDinhMuc=bangDinhMucService.findByID(ID);
+	public String removeBangDinhMuc(@PathVariable int ID, @ModelAttribute BangDinhMuc bangDinhMuc) {
+		bangDinhMuc = bangDinhMucService.findByID(ID);
 		bangDinhMucService.deleteBangDinhMuc(bangDinhMuc);
 		return "redirect:/listSanPham_SX";
 	}
-	
+
 	@GetMapping("/editCongDoanSanXuat/{ID}")
-	public String editCongDoanSanXuat(@PathVariable int ID,Model model,@ModelAttribute CongDoanSX congDoanSX) {
-		congDoanSX =congDoanSXService.findOneByID(ID);
-		
+	public String editCongDoanSanXuat(@PathVariable int ID, Model model, @ModelAttribute CongDoanSX congDoanSX) {
+		congDoanSX = congDoanSXService.findOneByID(ID);
+
 		model.addAttribute("ID", congDoanSX.getID());
 		model.addAttribute("tenSanPham", congDoanSX.getSanPham().getTenSP());
 		model.addAttribute("tenCongDoan", congDoanSX.getTenCongDoan());
@@ -167,26 +190,122 @@ public class QLySanXuatController {
 		model.addAttribute("moTa", congDoanSX.getMoTa());
 		return "quanLySanXuat_EditCongDoanSanXuat";
 	}
-	
+
 	@GetMapping("/active_EditCongDoanSanXuat")
-	public String active_EditCongDoanSanXuat(@RequestParam("ID")int ID,@RequestParam("tenSanPham")String tenSanPham,@RequestParam("tenCongDoan")String tenCongDoan,//
-			@RequestParam("thoiGianHoanThien")String thoiGianHoanThien,@RequestParam("moTa")String moTa,@ModelAttribute CongDoanSX congDoanSX,//
+	public String active_EditCongDoanSanXuat(@RequestParam("ID") int ID, @RequestParam("tenSanPham") String tenSanPham,
+			@RequestParam("tenCongDoan") String tenCongDoan, //
+			@RequestParam("thoiGianHoanThien") String thoiGianHoanThien, @RequestParam("moTa") String moTa,
+			@ModelAttribute CongDoanSX congDoanSX, //
 			@ModelAttribute SanPham sanPham) {
-		sanPham=sanPhamService.findSanPham(tenSanPham);
+		sanPham = sanPhamService.findSanPham(tenSanPham);
 		congDoanSX.setID(ID);
 		congDoanSX.setMoTa(moTa);
 		congDoanSX.setSanPham(sanPham);
 		congDoanSX.setTenCongDoan(tenCongDoan);
 		congDoanSX.setThoiGianHoanThien(thoiGianHoanThien);
-		
+
 		congDoanSXService.save(congDoanSX);
 		return "redirect:/listSanPham_SX";
 	}
-	
+
 	@GetMapping("/removeCongDoanSanXuat/{ID}")
-	public String removeCongDoanSanXuat(@PathVariable int ID,@ModelAttribute CongDoanSX congDoanSX) {
-		congDoanSX=congDoanSXService.findOneByID(ID);
+	public String removeCongDoanSanXuat(@PathVariable int ID, @ModelAttribute CongDoanSX congDoanSX) {
+		congDoanSX = congDoanSXService.findOneByID(ID);
 		congDoanSXService.deleteCongDoanSX(congDoanSX);
 		return "redirect:/listSanPham_SX";
 	}
+
+	@GetMapping("/listThanhPham_SX")
+	public String listThanhPham_SX(Model model) {
+		List<ThanhPham> listtp = new ArrayList<ThanhPham>();
+		listtp = thanhPhamService.findAllThanhPhams();
+		model.addAttribute("tps", listtp);
+		return "quanLySanXuat_ListThanhPham";
+	}
+
+	@GetMapping("/HTThanhPham/{ID}")
+	public String HTThanhPham(@PathVariable int ID, @ModelAttribute ThanhPham thanhPham) {
+		thanhPham = thanhPhamService.findOneThanhPhamByID(ID);
+		thanhPham.setID(ID);
+		thanhPham.setLoaiGia(thanhPham.getLoaiGia());
+		thanhPham.setPhieuDatHang(thanhPham.getPhieuDatHang());
+		thanhPham.setSanPham(thanhPham.getSanPham());
+		thanhPham.setSoLuong(thanhPham.getSoLuong());
+		thanhPham.setSoLuongTonKho(thanhPham.getSoLuongTonKho());
+		thanhPham.setSoLuongTrongXuong(thanhPham.getSoLuong());
+		thanhPham.setTinhTrang(thanhPham.getTinhTrang());
+		thanhPham.setXuong(thanhPham.getXuong());
+
+		thanhPhamService.saveThanhPham(thanhPham);
+		return "redirect:/listThanhPham_SX";
+	}
+
+	@GetMapping("/CHTThanhPham/{ID}")
+	public String CHTThanhPham(@PathVariable int ID, @ModelAttribute ThanhPham thanhPham) {
+		thanhPham = thanhPhamService.findOneThanhPhamByID(ID);
+		thanhPham.setID(ID);
+		thanhPham.setLoaiGia(thanhPham.getLoaiGia());
+		thanhPham.setPhieuDatHang(thanhPham.getPhieuDatHang());
+		thanhPham.setSanPham(thanhPham.getSanPham());
+		thanhPham.setSoLuong(thanhPham.getSoLuong());
+		thanhPham.setSoLuongTonKho(thanhPham.getSoLuongTonKho());
+		thanhPham.setSoLuongTrongXuong(0);
+		thanhPham.setTinhTrang(thanhPham.getTinhTrang());
+		thanhPham.setXuong(thanhPham.getXuong());
+
+		thanhPhamService.saveThanhPham(thanhPham);
+		return "redirect:/listThanhPham_SX";
+	}
+
+	@GetMapping("/addPhieuLuuChuyen/{ID}")
+	public String addPhieuLuuChuyen(@PathVariable int ID, HttpSession session, @ModelAttribute Kho kho,
+			@ModelAttribute Xuong xuong, Model model, @ModelAttribute ThanhPham thanhPham) {
+		thanhPham = thanhPhamService.findOneThanhPhamByID(ID);
+		if (thanhPham.getSoLuong() == thanhPham.getSoLuongTrongXuong() && thanhPham.getTinhTrang().equalsIgnoreCase("chưa giao")&&//
+				thanhPham.getSoLuongTonKho()==0) {
+			session.setAttribute("IDThanhPhamLuuChuyen", ID);
+			xuong = xuongService.findXuong(1);
+			kho = khoService.findOneByID(1);
+
+			model.addAttribute("tenXuong", xuong.getTenXuong());
+			model.addAttribute("tenKho", kho.getTenKho());
+			return "quanLySanXuat_AddPhieuLuuChuyen";
+		}
+
+		else return "redirect:/listThanhPham_SX";
+	}
+
+	@GetMapping("/active_AddPhieuLuuChuyen")
+	public String active_AddPhieuLuuChuyen(HttpSession session, @ModelAttribute Kho kho, @ModelAttribute Xuong xuong,
+			@ModelAttribute ThanhPham thanhPham, @RequestParam("ngayLap") String ngayLap,
+			@RequestParam("chuThich") String chuThich, //
+			@ModelAttribute PhieuLuuChuyen phieuLuuChuyen) {
+		int IDThanhPhamLuuChuyen = (int) session.getAttribute("IDThanhPhamLuuChuyen");
+		thanhPham = thanhPhamService.findOneThanhPhamByID(IDThanhPhamLuuChuyen);
+		if (thanhPham.getSoLuong() == thanhPham.getSoLuongTrongXuong()) {
+			xuong = xuongService.findXuong(1);
+			kho = khoService.findOneByID(1);
+
+			phieuLuuChuyen.setChuThich(chuThich);
+			phieuLuuChuyen.setKho(kho);
+			phieuLuuChuyen.setNgayLap(ngayLap);
+			phieuLuuChuyen.setXuong(xuong);
+
+			phieuLuuChuyenService.save(phieuLuuChuyen);
+
+			thanhPham.setID(thanhPham.getID());
+			thanhPham.setLoaiGia(thanhPham.getLoaiGia());
+			thanhPham.setPhieuDatHang(thanhPham.getPhieuDatHang());
+			thanhPham.setSanPham(thanhPham.getSanPham());
+			thanhPham.setSoLuong(thanhPham.getSoLuong());
+			thanhPham.setSoLuongTonKho(thanhPham.getSoLuong());
+			thanhPham.setSoLuongTrongXuong(0);
+			thanhPham.setTinhTrang(thanhPham.getTinhTrang());
+			thanhPham.setXuong(thanhPham.getXuong());
+
+			thanhPhamService.saveThanhPham(thanhPham);
+		}
+		return "redirect:/listThanhPham_SX";
+	}
+	
 }

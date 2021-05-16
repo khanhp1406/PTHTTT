@@ -25,4 +25,8 @@ public class SanPhamService {
 	public List<SanPham> findAllSanPham(){
 		return sanPhamRepository.findAll();
 	}
+	
+	public SanPham save(SanPham sanPham) {
+		return sanPhamRepository.save(sanPham);
+	}
 }

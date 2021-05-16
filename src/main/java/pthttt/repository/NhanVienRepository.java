@@ -20,4 +20,6 @@ public interface NhanVienRepository extends JpaRepository<NhanVien, Integer> {
 	public boolean existsByTenDangNhapAndMatKhau(String tenDangNhap, String matKhau) ;
 
 	public boolean existsByHoTen(String hoTen);
+	
+	public NhanVien findByID(int ID);
 }

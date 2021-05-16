@@ -39,9 +39,15 @@ public class MainController {
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLySanXuat")) {
 				session.setAttribute("hoTenSanXuat", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
 				return "redirect:/listSanPham_SX";
-			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLythuMua")) {
+			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLyThuMua")) {
 				session.setAttribute("hoTenThuMua", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
 				return "redirect:/listLenhSanXuat_TM";
+			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKho")) {
+				session.setAttribute("hoTenKho", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
+				return "redirect:/listThanhPham_Kho";
+			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLy")) {
+				session.setAttribute("hoTenQLy", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
+				return "redirect:/listNhanVien_QLy";
 			}
 		}
 		return "LoginPage";

@@ -24,7 +24,7 @@
   display: inline-block;
   height: 24px;
   line-height: 24px;
-  width: 100px;
+  width: 10px;
   position: relative;
   font-size: 20px;
   font-weight: 600;
@@ -75,6 +75,7 @@
   font-weight: 600;
   text-align: center;
 }
+
 .content {
   width: 35%;
   height: calc(100% - 180px);
@@ -87,6 +88,7 @@
   height: 100%;
   background-color: transparent;
 }
+
 .content__table {
   padding-left: 15px;
   padding-right: 15px;
@@ -102,20 +104,18 @@
 }
 .content__table div {
   width: 100%;
-  height: 50px;
+  height: 45px;
 }
 .content__table span {
-  line-height: 50px;
+  line-height: 45px;
   height: 100%;
   width: calc(50% - 10px);
   display: inline-block;
-  /* background-color: burlywood; */
   font-weight: 600;
   font-size: 20px;
 }
 .content__table input {
   height: 100%;
-  /* background-color: burlywood; */
   display: inline-block;
   width: calc(50% - 10px);
 }
@@ -124,7 +124,7 @@
   position: relative;
   width: 100%;
 }
-.content__table input[type='text']{
+.content__table input[type="text"] {
   padding-left: 16px;
   padding-right: 8px;
   outline: none;
@@ -135,11 +135,11 @@
   transition: var(--transition);
   border-radius: 7px;
 }
-.content__table input[type='text']:focus{
+.content__table input[type="text"]:focus {
   border-color: var(--green);
-
+  box-shadow: 0 0 10px 1px var(--green);
 }
-.content__table input[type = 'submit'] {
+.content__table input[type="submit"] {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -157,10 +157,46 @@
   font-size: 16px;
   font-weight: 600;
 }
-.content__table input[type = 'submit']:hover {
+.content__table input[type="submit"]:hover {
   background-color: white;
   border: 2px solid var(--green);
   color: var(--green);
+}
+
+@media only screen and (max-width: 2048px) {
+  .content {
+    width: 40%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .content {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .content {
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .content {
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .content {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .content {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .content {
+    width: 100%;
+  }
 }
 
 /* //////////////////////////////////////////// */

@@ -62,7 +62,9 @@ public class QLyKDController {
 	}
 
 	@GetMapping("/AddPhieuDatHang")
-	public String AddPhieuDatHang() {
+	public String AddPhieuDatHang(HttpSession session,Model model) {
+		String hoTenKinhDoanh =(String) session.getAttribute("hoTenKinhDoanh");
+		model.addAttribute("hoTenKinhDoanh", hoTenKinhDoanh);
 		return "quanLyKD_AddPDH";
 	}
 
@@ -172,6 +174,9 @@ public class QLyKDController {
 		thanhPham.setLoaiGia(loaiGia);
 		thanhPham.setPhieuDatHang(phieuDatHang);
 		thanhPham.setXuong(xuong);
+		thanhPham.setSoLuongTonKho(0);
+		thanhPham.setSoLuongTrongXuong(0);
+		thanhPham.setTinhTrang("chưa giao");
 
 		thanhPhamService.saveThanhPham(thanhPham);
 		return "redirect:/phieudathang";
@@ -206,6 +211,9 @@ public class QLyKDController {
 		thanhPham.setLoaiGia(loaiGia);
 		thanhPham.setSanPham(sanPham);
 		thanhPham.setSoLuong(soLuong);
+		thanhPham.setSoLuongTonKho(0);
+		thanhPham.setSoLuongTrongXuong(0);
+		thanhPham.setTinhTrang("chưa giao");
 		
 		thanhPhamService.saveThanhPham(thanhPham);;
 		return "redirect:/phieudathang";

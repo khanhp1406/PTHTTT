@@ -1,9 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Quản Lý Sản Xuất</title>
-<meta charset="UTF-8" />
-</head>
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
 <th:link rel="stylesheet"
@@ -13,7 +10,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 	rel="stylesheet" />
+<title>Quản Lý Sản Xuất</title>
 <link rel="stylesheet" th:href="@{/KD_addPDH.css}">
+<meta charset="UTF-8" />
+</head>
 <body class="screen">
 	<div class="header">
 		<p th:text="${session.hoTenSanXuat}" class="header__username"
@@ -24,30 +24,31 @@
 			xuất</a>
 	</div>
 
-	<div class="slider">Thêm mới Bảng Định Mức</div>
+	<div class="slider">Thêm mới Công đoạn Sản xuất</div>
 	<div class="content">
-		<form th:action="@{/active_AddBangDinhMuc}" method='GET'
+		<form th:action="@{/active_AddPhieuLuuChuyen}" method='GET'
 			class="content__form">
-			<div class="content__table">
+			<div class='content__table'>
 				<div>
-					<span>Tên Sản Phẩm</span> <input type='text'
-						th:value="${tenSanPham}" th:name="tenSanPham" th:readonly="true" />
+					<span>Tên Kho</span> <input type='text' th:value="${tenKho}"
+						th:name="tenKho" th:readonly="true" />
 				</div>
 				<div>
-					<span>Tên NVL</span> <input type='text' th:name="tenNVL" />
+					<span>Tên Xưởng</span> <input type='text' th:value="${tenXuong}"
+						th:name="tenXuong" th:readonly="true" />
 				</div>
 				<div>
-					<span>Số Lượng NVL</span> <input type='text' th:name="soLuong" />
+					<span>Ngày Lập</span> <input type='text'
+						th:name="ngayLap" />
 				</div>
 				<div>
-					<span>Nhân Viên Lên BDM</span> <input type='text'
-						th:value="${hoTenSanXuat}" th:name="hoTenSanXuat"
-						th:readonly="true" />
+					<span>Chú Thích</span> <input type='text'
+						th:name="chuThich" />
 				</div>
 				<div>
 					<input name="submit" type="submit" value="submit" />
 				</div>
-				</div>
+			</div>
 		</form>
 	</div>
 	<button class="info__btn">

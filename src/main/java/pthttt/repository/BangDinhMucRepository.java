@@ -16,4 +16,6 @@ public interface BangDinhMucRepository extends JpaRepository<BangDinhMuc, Intege
 	public BangDinhMuc findByID(int ID);
 	
 	public List<BangDinhMuc> findAll();
+	
+
 }

@@ -1,5 +1,7 @@
 package pthttt.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,5 +31,16 @@ public class NhanVienService {
 	}
 	public boolean checkNhanVienByHoTen(String hoTen) {
 		return nhanVienRepository.existsByHoTen(hoTen);
+	}
+	public NhanVien save(NhanVien nhanVien) {
+		return nhanVienRepository.save(nhanVien);
+	}
+	
+	public NhanVien findByID(int ID) {
+		return nhanVienRepository.findByID(ID);
+	}
+	
+	public List<NhanVien> findAll() {
+		return nhanVienRepository.findAll();
 	}
 }

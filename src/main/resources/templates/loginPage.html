@@ -12,7 +12,7 @@
 	rel="stylesheet" />
 <title>Login</title>
 <meta charset="UTF-8" />
-<link rel="stylesheet" th:href="@{loginPage.css}" />
+<link rel="stylesheet" th:href="@{/loginPage.css}" />
 </head>
 <body class="screen">
 	<form th:action="@{/checklogin}" method="POST" class="login__form">
@@ -50,6 +50,6 @@
 					Thị Ngọc Ánh</span></li>
 		</ul>
 	</div>
-	<script src="index.js"></script>
+	<script th:src="@{/index.js}"></script>
 </body>
 </html>

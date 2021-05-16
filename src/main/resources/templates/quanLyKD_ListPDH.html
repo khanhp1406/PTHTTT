@@ -17,13 +17,12 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
-	<div class="slider">
-		<a th:href="@{/phieudathang}">Phiếu Đặt Hàng</a>
-	</div>
+	<div class="slider">Danh Sách Phiếu Đặt Hàng</div>
 	<div class="content">
 		<div class="table-container">
 			<div class="title">
@@ -77,8 +76,9 @@
 						<th>Mã phiếu Đặt Hàng</th>
 						<th>Tên Xưởng</th>
 						<th>Số Lượng</th>
-						<th>Số Lượng Trong Xưởng</th>
 						<th>Số Lượng Tồn Kho</th>
+						<th>Số Lượng Trong Xưởng</th>
+						<th>Tình Trạng</th>
 						<th>Loại Giá</th>
 						<th colspan="2"><a th:href="@{AddThanhPham}">Thêm Thành
 								Phẩm</a></th>
@@ -90,12 +90,13 @@
 						<td th:utext="${tp.phieuDatHang.getMaPhieu()}"></td>
 						<td th:utext="${tp.xuong.getTenXuong()}"></td>
 						<td th:utext="${tp.soLuong}"></td>
-						<td th:utext="${tp.soLuongTrongXuong}"></td>
 						<td th:utext="${tp.soLuongTonKho}"></td>
+						<td th:utext="${tp.soLuongTrongXuong}"></td>
+						<td th:utext="${tp.tinhTrang}"></td>
 						<td th:utext="${tp.loaiGia}"></td>
 						<td class="table__icon"><a
-							th:href="@{/editThanhPham/}+${tp.ID}"><i
-								class="fa fa-edit" title="Edit"></i></a></td>
+							th:href="@{/editThanhPham/}+${tp.ID}"><i class="fa fa-edit"
+								title="Edit"></i></a></td>
 						<td class="table__icon"><a
 							th:href="@{/removeThanhPham/}+${tp.ID}"><i
 								class="fas fa-trash-alt" title="Remove"></i></a></td>
@@ -129,6 +130,6 @@
 					Thị Ngọc Ánh</span></li>
 		</ul>
 	</div>
-	<script src="index.js"></script>
+	<script th:src="@{/index.js}"></script>
 </body>
 </html>

@@ -17,13 +17,12 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a
-			th:href="@{/logout}" class="header__logout">Đăng xuất</a>
+			class="header__username"></span> <a th:href="@{/phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__logout">Đăng xuất</a>
 	</div>
 
-	<div class="slider">
-		<a th:href="@{/phieudathang}">Phiếu Đặt Hàng</a>
-	</div>
+	<div class="slider">Sửa Phiếu Thu</div>
 	<div class="content">
 		<form th:action="@{/active_EditPhieuThu}" method="GET"
 			class="content__form">
@@ -34,7 +33,7 @@
 				</div>
 				<div>
 					<span>Loại Phiếu</span> <input type="text" th:value="${loaiPhieu}"
-						th:name="loaiPhieu" th:readonly="true" />
+						th:name="loaiPhieu"  />
 				</div>
 				<div>
 					<span>Số Phiếu</span> <input type="text" th:value="${soPhieu}"
@@ -46,7 +45,7 @@
 				</div>
 				<div>
 					<span>Nội Dung</span> <input type="text" th:value="${noiDung}"
-						th:name="noiDung" th:readonly="noiDung" />
+						th:name="noiDung" />
 				</div>
 				<div>
 					<span>Chú Thích</span> <input type="text" th:value="${chuThich}"
@@ -92,6 +91,6 @@
 					Thị Ngọc Ánh</span></li>
 		</ul>
 	</div>
-	<script src="index.js"></script>
+	<script th:src="@{/index.js}"></script>
 </body>
 </html>

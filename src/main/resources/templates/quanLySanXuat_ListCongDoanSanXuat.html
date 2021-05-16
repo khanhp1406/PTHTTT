@@ -1,19 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet"
+	href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
+<th:link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+	crossorigin="anonymous" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/KD_listPDH.css}">
 <title>Quản Lý Sản Xuất</title>
 <meta charset="UTF-8" />
-<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
 </head>
-<body>
+<body class="screen">
 	<div class="header">
-	 	<p th:text ="${session.hoTenSanXuat}" th:unless="${session==null}"></p>
-		<a th:href="@{/logout}">Đăng xuất</a>
+		<p th:text="${session.hoTenSanXuat}" class="header__username"
+			th:unless="${session==null}"></p>
+		<a th:href="@{/listSanPham_SX}" class="header__main">Danh Sách Sản
+			Phẩm</a><a th:href="@{/listThanhPham_SX}" class="header__main">Danh
+			Sách Thành Phẩm</a> <a th:href="@{/logout}" class="header__logout">Đăng
+			xuất</a>
 	</div>
 
-	<div class="slider">
-		<a th:href="@{/sanpham_SX}">Danh Sách Sản Phẩm</a>
-	</div>
+	<div class="slider">Danh Sách Công đoạn Sản xuất</div>
 	<div class="content">
 		<div class="table-container">
 			<div class="title">
@@ -27,23 +40,51 @@
 						<th>Tên Công Đoạn</th>
 						<th>Mô Tả</th>
 						<th>Thời Gian Hoàn Thiện</th>
-						<th colspan="3"></th>
+						<th colspan="3">Chức năng</th>
 					</tr>
-						<tr th:each="cdsx,state:${cdsxs}">
-							<td th:utext="${state.count}"></td>
-							<td th:utext="${cdsx.sanPham.getTenSP()}"></td>
-							<td th:utext="${cdsx.tenCongDoan}"></td>
-							<td th:utext="${cdsx.moTa}"></td>
-							<td th:utext="${cdsx.thoiGianHoanThien}"></td>
-							<td><a th:href="@{/editCongDoanSanXuat/}+${cdsx.ID}"><i
+					<tr th:each="cdsx,state:${cdsxs}">
+						<td th:utext="${state.count}"></td>
+						<td th:utext="${cdsx.sanPham.getTenSP()}"></td>
+						<td th:utext="${cdsx.tenCongDoan}"></td>
+						<td th:utext="${cdsx.moTa}"></td>
+						<td th:utext="${cdsx.thoiGianHoanThien}"></td>
+						<td style="text-align: center;"><a
+							th:href="@{/editCongDoanSanXuat/}+${cdsx.ID}"><i
 								class="fa fa-edit"></i></a></td>
-							<td><a th:href="@{/removeCongDoanSanXuat/}+${cdsx.ID}"><i
-								class="fa fa-remove"></i></a></td>
-						</tr>
+						<td style="text-align: center;"><a
+							th:href="@{/removeCongDoanSanXuat/}+${cdsx.ID}"><i
+								class="fas fa-trash-alt"></i></a></td>
+					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
+	<button class="info__btn">
+		<i class="fas fa-info"></i>
+	</button>
+	<button class="info__close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="info__doc">
+		<ul class="info__list">
+			<li class="info__list-item">
+				<h3 class="info__title ">Tên các thành viên</h3>
+			</li>
+			<li class="info__list-item"><span class="info__name">Nguyễn
+					Vũ Nghiêm</span></li>
+			<li class="info__list-item"><span class="info__name">Kiều
+					Văn Thông</span></li>
+			<li class="info__list-item"><span class="info__name">Hoàng
+					Thanh Hải</span></li>
+			<li class="info__list-item"><span class="info__name">Phạm
+					Ngọc Khánh</span></li>
+			<li class="info__list-item"><span class="info__name">Nguyễn
+					Thị Hiếu</span></li>
+			<li class="info__list-item"><span class="info__name">Vũ
+					Thị Ngọc Ánh</span></li>
+		</ul>
+	</div>
+	<script th:src="@{/index.js}"></script>
 	<div class="footer"></div>
 </body>
 </html>

@@ -1,9 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Quản Lý Sản Xuất</title>
-<meta charset="UTF-8" />
-</head>
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
 <th:link rel="stylesheet"
@@ -13,42 +10,53 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 	rel="stylesheet" />
-<link rel="stylesheet" th:href="@{/KD_addPDH.css}">
+<link rel="stylesheet" th:href="@{/KD_listPDH.css}">
+<title>Quản Lý</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+</head>
 <body class="screen">
 	<div class="header">
-		<p th:text="${session.hoTenSanXuat}" class="header__username"
+		<p th:text="${session.hoTenQLy}" class="header__username"
 			th:unless="${session==null}"></p>
-		<a th:href="@{/listSanPham_SX}" class="header__main">Danh Sách Sản
-			Phẩm</a><a th:href="@{/listThanhPham_SX}" class="header__main">Danh
-			Sách Thành Phẩm</a> <a th:href="@{/logout}" class="header__logout">Đăng
-			xuất</a>
+		<a th:href="@{/listNhanVien_QLy}" class="header__main">Quản Lý
+			Nhân Viên</a><a th:href="@{/listSanPham_QLy}" class="header__main">Quản
+			Lý Sản Phẩm</a><a th:href="@{/listNVL_QLy}" class="header__main">Quản
+			Lý NVL</a> <a th:href="@{/logout}" class="header__logout">Đăng xuất</a>
 	</div>
 
-	<div class="slider">Thêm mới Bảng Định Mức</div>
+	<div class="slider">Danh Sách Sản Phẩm</div>
 	<div class="content">
-		<form th:action="@{/active_AddBangDinhMuc}" method='GET'
-			class="content__form">
-			<div class="content__table">
-				<div>
-					<span>Tên Sản Phẩm</span> <input type='text'
-						th:value="${tenSanPham}" th:name="tenSanPham" th:readonly="true" />
-				</div>
-				<div>
-					<span>Tên NVL</span> <input type='text' th:name="tenNVL" />
-				</div>
-				<div>
-					<span>Số Lượng NVL</span> <input type='text' th:name="soLuong" />
-				</div>
-				<div>
-					<span>Nhân Viên Lên BDM</span> <input type='text'
-						th:value="${hoTenSanXuat}" th:name="hoTenSanXuat"
-						th:readonly="true" />
-				</div>
-				<div>
-					<input name="submit" type="submit" value="submit" />
-				</div>
-				</div>
-		</form>
+		<div class="table-container">
+			<div class="title">
+				<h3></h3>
+			</div>
+			<div class="table">
+				<table id="table2">
+					<tr>
+						<th>No</th>
+						<th>Tên NVL</th>
+						<th>Mã NVL</th>
+						<th>Khối Lượng</th>
+						<th>Độ Dài</th>
+						<th>Độ Rộng</th>
+						<th colspan="1"><a th:href="@{/AddNVL}">Thêm Sản Phẩm</a></th>
+					</tr>
+					<tr th:each="nvl,state:${nvls}">
+						<td th:utext="${state.count}"></td>
+						<td th:utext="${nvl.tenNVL}"></td>
+						<td th:utext="${nvl.maNVL}"></td>
+						<td th:utext="${nvl.khoiLuong}"></td>
+						<td th:utext="${nvl.doDai}"></td>
+						<td th:utext="${nvl.doRong}"></td>
+						<td class="table__icon"><a
+							th:href="@{/editNVL/}+${nvl.ID}"><i class="fa fa-edit"
+								title="Edit"></i></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 	<button class="info__btn">
 		<i class="fas fa-info"></i>
