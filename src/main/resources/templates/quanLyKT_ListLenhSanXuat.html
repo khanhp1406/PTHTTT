@@ -20,8 +20,8 @@
 	<div class="header">
 		<p th:text="${session.hoTenKyThuat}" class="header__username"
 			th:unless="${session==null}"></p>
-		<a th:href="@{/phieuDatHang_KT}" class="header__main">Phiếu Đặt
-			Hàng</a> <a th:href="@{/logout}" class="header__logout">Đăng xuất</a>
+		<a th:href="@{/PhieuDatHang_KT}" class="header__main">Phiếu Đặt
+			Hàng</a> <a th:href="@{/Logout}" class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">Danh Sách Lệnh Sản Xuất</div>
@@ -50,9 +50,9 @@
 						<td th:utext="${lsx.trangThai}"></td>
 						<td th:utext="${lsx.chuThich}"></td>
 						<td th:utext="${lsx.nhanVien.getHoTen()}"></td>
-						<td><a th:href="@{/editLenhSanXuat/}+${lsx.ID}"><i
+						<td><a th:href="@{/EditLenhSanXuat/}+${lsx.ID}"><i
 								class="fa fa-edit"></i></a></td>
-						<td><a th:href="@{/removeLenhSanXuat/}+${lsx.ID}"><i
+						<td><a th:href="@{/RemoveLenhSanXuat/}+${lsx.ID}"><i
 								class="fas fa-trash-alt"></i></a></td>
 					</tr>
 				</table>

@@ -19,12 +19,12 @@ public class MainController {
 	@Autowired
 	private NhanVienService nhanVienService;
 
-	@RequestMapping(value = { "/", "/loginPage" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/LoginPage" }, method = RequestMethod.GET)
 	public String showLogin() {
 		return "loginPage";
 	}
 
-	@RequestMapping(value = { "/checklogin" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/Checklogin" }, method = RequestMethod.POST)
 	public String processLogin(@RequestParam("tenDangNhap") String tenDangNhap, //
 			@RequestParam("matKhau") String matKhau, @ModelAttribute NhanVien nhanVien, HttpSession session) {
 
@@ -32,28 +32,28 @@ public class MainController {
 			nhanVien = nhanVienService.findNhanVien(tenDangNhap, matKhau);
 			if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKinhDoanh")) {
 				session.setAttribute("hoTenKinhDoanh", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/phieudathang";
+				return "redirect:/Phieudathang";
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKyThuat")) {
 				session.setAttribute("hoTenKyThuat", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/phieuDatHang_KT";
+				return "redirect:/PhieuDatHang_KT";
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLySanXuat")) {
 				session.setAttribute("hoTenSanXuat", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/listSanPham_SX";
+				return "redirect:/ListSanPham_SX";
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLyThuMua")) {
 				session.setAttribute("hoTenThuMua", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/listLenhSanXuat_TM";
+				return "redirect:/ListLenhSanXuat_TM";
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKho")) {
 				session.setAttribute("hoTenKho", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/listThanhPham_Kho";
+				return "redirect:/ListThanhPham_Kho";
 			} else if (nhanVien.getBoPhan().equalsIgnoreCase("QLy")) {
 				session.setAttribute("hoTenQLy", nhanVienService.findNhanVien(tenDangNhap, matKhau).getHoTen());
-				return "redirect:/listNhanVien_QLy";
+				return "redirect:/ListNhanVien_QLy";
 			}
 		}
 		return "LoginPage";
 	}
 
-	@GetMapping("/logout")
+	@GetMapping("/Logout")
 	public String LogOut() {
 		return "redirect:/";
 	}

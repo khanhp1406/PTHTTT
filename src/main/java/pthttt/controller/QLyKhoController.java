@@ -37,7 +37,7 @@ public class QLyKhoController {
 	@Autowired
 	private PhieuXuatKhoService phieuXuatKhoService;
 	
-	@GetMapping("/listThanhPham_Kho")
+	@GetMapping("/ListThanhPham_Kho")
 	public String ListThanhPham(Model model) {
 		List<ThanhPham> listtpList = new ArrayList<ThanhPham>();
 		listtpList = thanhPhamService.findAllThanhPhams();
@@ -46,7 +46,7 @@ public class QLyKhoController {
 		return "quanLyKho_ListThanhPham";
 	}
 	
-	@GetMapping("/addPhieuXuatKho/{ID}")
+	@GetMapping("/AddPhieuXuatKho/{ID}")
 	public String addPhieuXuatKho(@PathVariable int ID,@ModelAttribute ThanhPham thanhPham,Model model,@ModelAttribute Kho kho,//
 			HttpSession session) {
 		thanhPham=thanhPhamService.findOneThanhPhamByID(ID);
@@ -60,11 +60,11 @@ public class QLyKhoController {
 			return "quanLyKho_AddPhieuXuatKho";
 		}
 		else {
-			return "redirect:/listThanhPham_Kho";
+			return "redirect:/ListThanhPham_Kho";
 		}
 	}
 	
-	@GetMapping("/active_AddPhieuXuatKho")
+	@GetMapping("/Active_AddPhieuXuatKho")
 	public String active_AddPhieuXuatKho(@RequestParam("maPhieuDatHang")String maPhieuDatHang,@RequestParam("soLuong")int soLuong,//
 			@RequestParam("ngayXuat")String ngayXuat,@RequestParam("trangThai")String trangThai,@ModelAttribute PhieuXuatKho phieuXuatKho,//
 			@ModelAttribute Kho kho,@ModelAttribute PhieuDatHang phieuDatHang,@ModelAttribute ThanhPham thanhPham,HttpSession session) {
@@ -93,6 +93,6 @@ public class QLyKhoController {
 		thanhPham.setXuong(thanhPham.getXuong());
 		
 		thanhPhamService.saveThanhPham(thanhPham);
-		return "redirect:/listThanhPham_Kho";
+		return "redirect:/ListThanhPham_Kho";
 	}
 }

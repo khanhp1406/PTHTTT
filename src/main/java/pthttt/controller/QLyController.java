@@ -32,7 +32,7 @@ public class QLyController {
 	@Autowired
 	private NguyenVatLieuService nguyenVatLieuService;
 	
-	@GetMapping("/listNhanVien_QLy")
+	@GetMapping("/ListNhanVien_QLy")
 	public String listNhanVien(Model model) {
 		List<NhanVien> listnv = new ArrayList<NhanVien>();
 		listnv = nhanVienService.findAll();
@@ -45,7 +45,7 @@ public class QLyController {
 		return "quanLy_AddNhanVien";
 	}
 
-	@GetMapping("/active_AddNhanVien")
+	@GetMapping("/Active_AddNhanVien")
 	public String active_AddNhanVien(@RequestParam("hoTen") String hoTen,
 			@RequestParam("tenDangNhap") String tenDangNhap, @RequestParam("matKhau") String //
 			matKhau, @RequestParam("diaChi") String diaChi, @RequestParam("viTri") String viTri,
@@ -59,10 +59,10 @@ public class QLyController {
 		nhanVien.setViTri(viTri);
 
 		nhanVienService.save(nhanVien);
-		return "redirect:/listNhanVien_QLy";
+		return "redirect:/ListNhanVien_QLy";
 	}
 
-	@GetMapping("/editNhanVien/{ID}")
+	@GetMapping("/EditNhanVien/{ID}")
 	public String editNhanVien(@PathVariable int ID, @ModelAttribute NhanVien nhanVien, Model model,
 			HttpSession sesion) {
 		nhanVien = nhanVienService.findByID(ID);
@@ -76,7 +76,7 @@ public class QLyController {
 		return "quanLy_EditNhanVien";
 	}
 
-	@GetMapping("/active_EditNhanVien")
+	@GetMapping("/Active_EditNhanVien")
 	public String active_EditNhanVien(HttpSession session,@ModelAttribute NhanVien nhanVien,@RequestParam("boPhan")String boPhan,@RequestParam("viTri")//
 	String viTri,@RequestParam("hoTen")String hoTen,@RequestParam("diaChi")String diaChi,@RequestParam("tenDangNhap")String tenDangNhap,//
 	@RequestParam("matKhau")String matKhau,@RequestParam("ID")int ID) {
@@ -89,10 +89,10 @@ public class QLyController {
 		nhanVien.setViTri(viTri);
 		
 		nhanVienService.save(nhanVien);
-		return "redirect:/listNhanVien_QLy";
+		return "redirect:/ListNhanVien_QLy";
 	}
 
-	@GetMapping("/listSanPham_QLy")
+	@GetMapping("/ListSanPham_QLy")
 	public String listSanPham_QLy(Model model) {
 		List<SanPham> listsp = new ArrayList<SanPham>();
 		listsp = sanPhamService.findAllSanPham();
@@ -105,7 +105,7 @@ public class QLyController {
 		return "quanLy_AddSanPham";
 	}
 	
-	@GetMapping("/active_AddSanPham")
+	@GetMapping("/Active_AddSanPham")
 	public String active_AddSanPham(@RequestParam("tenSP")String tenSP,@RequestParam("maSP")String maSP,@RequestParam("khoiLuong")float khoiLuong,
 			@RequestParam("doDai")float doDai,@RequestParam("doRong")float doRong,@ModelAttribute SanPham sanPham) {
 		sanPham.setDoDai(doDai);
@@ -115,10 +115,10 @@ public class QLyController {
 		sanPham.setTenSP(tenSP);
 		
 		sanPhamService.save(sanPham);
-		return "redirect:/listSanPham_QLy";
+		return "redirect:/ListSanPham_QLy";
 	}
 	
-	@GetMapping("/editSanPham/{ID}")
+	@GetMapping("/EditSanPham/{ID}")
 	public String editSanPham(@PathVariable int ID,@ModelAttribute SanPham sanPham,Model model) {
 		sanPham =sanPhamService.findSanPhamByID(ID);
 		model.addAttribute("ID", ID);
@@ -130,7 +130,7 @@ public class QLyController {
 		return "quanLy_EditSanPham";
 	}
 	
-	@GetMapping("/active_EditSanPham")
+	@GetMapping("/Active_EditSanPham")
 	public String active_EditSanPham(@RequestParam("tenSP")String tenSP,@RequestParam("maSP")String maSP,@RequestParam("khoiLuong")float khoiLuong,
 			@RequestParam("doDai")float doDai,@RequestParam("doRong")float doRong,@RequestParam("ID")int ID,@ModelAttribute SanPham sanPham) {
 		sanPham.setID(ID);
@@ -141,10 +141,10 @@ public class QLyController {
 		sanPham.setTenSP(tenSP);
 		
 		sanPhamService.save(sanPham);
-		return "redirect:/listSanPham_QLy";
+		return "redirect:/ListSanPham_QLy";
 	}
 	
-	@GetMapping("/listNVL_QLy")
+	@GetMapping("/ListNVL_QLy")
 	public String listNVL_QLy(Model model) {
 		List<NguyenVatLieu> listnvl=new ArrayList<NguyenVatLieu>();
 		listnvl=nguyenVatLieuService.findAll();
@@ -157,7 +157,7 @@ public class QLyController {
 		return "quanLy_AddNVL";
 	}
 	
-	@GetMapping("/active_AddNVL")
+	@GetMapping("/Active_AddNVL")
 	public String active_AddNVL(@RequestParam("tenNVL")String tenNVL,@RequestParam("maNVL")String maNVL,@RequestParam("khoiLuong")float khoiLuong,
 			@RequestParam("doDai")float doDai,@RequestParam("doRong")float doRong,@ModelAttribute NguyenVatLieu nguyenVatLieu) {
 		
@@ -168,10 +168,10 @@ public class QLyController {
 		nguyenVatLieu.setTenNVL(tenNVL);
 		
 		nguyenVatLieuService.save(nguyenVatLieu);
-		return "redirect:/listNVL_QLy";
+		return "redirect:/ListNVL_QLy";
 	}
 	
-	@GetMapping("/editNVL/{ID}")
+	@GetMapping("/EditNVL/{ID}")
 	public String editNVL(@PathVariable int ID,@ModelAttribute NguyenVatLieu nguyenVatLieu,Model model) {
 		nguyenVatLieu =nguyenVatLieuService.findByID(ID);
 		model.addAttribute("ID", ID);
@@ -183,7 +183,7 @@ public class QLyController {
 		return "quanLy_EditNVL";
 	}
 	
-	@GetMapping("/active_EditNVL")
+	@GetMapping("/Active_EditNVL")
 	public String active_EditNVL(@RequestParam("tenNVL")String tenNVL,@RequestParam("maNVL")String maNVl,@RequestParam("khoiLuong")float khoiLuong,
 			@RequestParam("doDai")float doDai,@RequestParam("doRong")float doRong,@RequestParam("ID")int ID,@ModelAttribute NguyenVatLieu nguyenVatLieu) {
 		nguyenVatLieu.setDoDai(doDai);
@@ -194,6 +194,6 @@ public class QLyController {
 		nguyenVatLieu.setTenNVL(tenNVL);
 		
 		nguyenVatLieuService.save(nguyenVatLieu);
-		return "redirect:/listNVL_QLy";
+		return "redirect:/ListNVL_QLy";
 	}
 }

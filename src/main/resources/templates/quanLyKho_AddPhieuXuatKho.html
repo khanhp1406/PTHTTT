@@ -17,14 +17,14 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKho}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/listThanhPham_Kho}"
-			class="header__main">Danh Sách Thành Phẩm</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/ListThanhPham_Kho}"
+			class="header__main">Danh Sách Thành Phẩm</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">Thêm mới Phiếu Xuất Kho</div>
 	<div class="content">
-		<form th:action="@{/active_AddPhieuXuatKho}" method='GET'
+		<form th:action="@{/Active_AddPhieuXuatKho}" method='GET'
 			class="content__form">
 			<div class="content__table">
 				<div>
@@ -37,10 +37,10 @@
 					<span>Số Lượng Xuất Kho</span> <input type='text' th:value="${soLuong}" th:name="soLuong" th:readonly="true"/>
 				</div>
 				<div>
-					<span>Ngày Xuất</span> <input type='text' th:name="ngayXuat" />
+					<span>Ngày Xuất</span> <input type='text' th:name="ngayXuat" required/>
 				</div>
 				<div>
-					<span>Trạng Thái</span> <input type='text' th:name="trangThai" />
+					<span>Trạng Thái</span> <input type='text' th:name="trangThai" required/>
 				</div>
 				<div>
 					<input name="submit" type="submit" value="submit" />

@@ -19,13 +19,13 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/phieudathang}"
-			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/Phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">
-		<a th:href="@{/phieudathang}">Danh SáchPhiếu Đặt Hàng</a>
+		<a th:href="@{/Phieudathang}">Danh SáchPhiếu Đặt Hàng</a>
 	</div>
 	<div class="content">
 		<div class="table-container">
@@ -53,10 +53,10 @@
 						<td th:utext="${pt.chuThich}"></td>
 						<td th:utext="${pt.tienDatCoc}"></td>
 						<td class="table__icon"><a
-							th:href="@{/editPhieuThu/}+${pt.ID}"><i class="fa fa-edit"
+							th:href="@{/EditPhieuThu/}+${pt.ID}"><i class="fa fa-edit"
 								title="Edit"></i></a></td>
 						<td class="table__icon"><a
-							th:href="@{/removePhieuThu/}+${pt.ID}"><i
+							th:href="@{/RemovePhieuThu/}+${pt.ID}"><i
 								class="fas fa-trash-alt" title="Remove"></i></a></td>
 					</tr>
 				</table>

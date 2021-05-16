@@ -20,9 +20,9 @@
 	<div class="header">
 		<p th:text="${session.hoTenSanXuat}" class="header__username"
 			th:unless="${session==null}"></p>
-		<a th:href="@{/listSanPham_SX}" class="header__main">Danh Sách Sản
-			Phẩm</a><a th:href="@{/listThanhPham_SX}" class="header__main">Danh
-			Sách Thành Phẩm</a> <a th:href="@{/logout}" class="header__logout">Đăng
+		<a th:href="@{/ListSanPham_SX}" class="header__main">Danh Sách Sản
+			Phẩm</a><a th:href="@{/ListThanhPham_SX}" class="header__main">Danh
+			Sách Thành Phẩm</a> <a th:href="@{/Logout}" class="header__logout">Đăng
 			xuất</a>
 	</div>
 
@@ -49,10 +49,10 @@
 						<td th:utext="${cdsx.moTa}"></td>
 						<td th:utext="${cdsx.thoiGianHoanThien}"></td>
 						<td style="text-align: center;"><a
-							th:href="@{/editCongDoanSanXuat/}+${cdsx.ID}"><i
+							th:href="@{/EditCongDoanSanXuat/}+${cdsx.ID}"><i
 								class="fa fa-edit"></i></a></td>
 						<td style="text-align: center;"><a
-							th:href="@{/removeCongDoanSanXuat/}+${cdsx.ID}"><i
+							th:href="@{/RemoveCongDoanSanXuat/}+${cdsx.ID}"><i
 								class="fas fa-trash-alt"></i></a></td>
 					</tr>
 				</table>

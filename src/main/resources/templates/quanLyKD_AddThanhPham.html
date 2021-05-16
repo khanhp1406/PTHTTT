@@ -17,34 +17,34 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/phieudathang}"
-			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/Phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">Thêm mới Thành Phẩm</div>
 	<div class="content">
-		<form th:action="@{/active_AddThanhPham}" method='GET'
+		<form th:action="@{/Active_AddThanhPham}" method='GET'
 			class="content__form">
 			<div class="content__table">
 				<div>
-					<span>Mã phiếu</span> <input type='text' th:name="maPhieu" />
+					<span>Mã phiếu</span> <input type='text' th:name="maPhieu" required/>
 				</div>
 				<div>
-					<span>Tên Sản Phẩm</span> <input type='text' th:name="tenSanPham" />
+					<span>Tên Sản Phẩm</span> <input type='text' th:name="tenSanPham"required/>
 				</div>
 				<div>
-					<span>Số Lượng</span> <input type='text' th:name="soLuong" />
+					<span>Số Lượng</span> <input type='text' th:name="soLuong" required/>
 				</div>
 				<div>
-					<span>Loại Giá</span> <input type='text' th:name="loaiGia" />
+					<span>Loại Giá</span> <input type='text' th:name="loaiGia" required/>
 				</div>
 				<div>
-					<span>Trang Thai</span> <input type='text' th:name="trangThai" />
+					<span>Trang Thai</span> <input type='text' th:name="trangThai" required/>
 				</div>
 				<div>
 					<span>Mã Xưởng</span> <input type='text' th:value="${xuongID}"
-						th:name="Xuong" th:readonly="true" />
+						th:name="Xuong" th:readonly="true" required/>
 				</div>
 				<div>
 					<input name="submit" type="submit" value="submit" />

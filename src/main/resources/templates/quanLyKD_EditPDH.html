@@ -17,14 +17,14 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/phieudathang}"
-			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/Phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">Sửa Phiếu Đặt Hàng</div>
 	<div class="content">
-		<form th:action="@{/active_EditPhieuDatHang}" method='GET'
+		<form th:action="@{/Active_EditPhieuDatHang}" method='GET'
 			class="content__form">
 			<div class="content__table content__table-any">
 				<div>
@@ -33,35 +33,35 @@
 				</div>
 				<div>
 					<span>Mã Phiếu</span> <input type='text' th:value="${maPhieu}"
-						th:name="maPhieu" />
+						th:name="maPhieu" required/>
 				</div>
 				<div>
 					<span>Tên Khách Hàng</span> <input type='text' th:value="${tenKH}"
-						th:name="tenKH" />
+						th:name="tenKH" required/>
 				</div>
 				<div>
 					<span>Số Điện Thoại Khách Hàng</span> <input type='text'
-						th:value="${sdtKH}" th:name="sdtKH" />
+						th:value="${sdtKH}" th:name="sdtKH" required/>
 				</div>
 				<div>
 					<span>Địa Chỉ Khách Hàng</span> <input type='text'
-						th:value="${diaChiKH}" th:name="diaChiKH" />
+						th:value="${diaChiKH}" th:name="diaChiKH" required/>
 				</div>
 				<div>
 					<span>Ngày Lập</span> <input type='text' th:value="${ngayLap}"
-						th:name="ngayLap" />
+						th:name="ngayLap" required/>
 				</div>
 				<div>
 					<span>Ngày Giao Hàng</span> <input type='text'
-						th:value="${ngayGiaoHang}" th:name="ngayGiaoHang" />
+						th:value="${ngayGiaoHang}" th:name="ngayGiaoHang" required/>
 				</div>
 				<div>
 					<span>Trạng Thái</span> <input type='text' th:value="${trangThai}"
-						th:name="trangThai" />
+						th:name="trangThai" required/>
 				</div>
 				<div>
 					<span>Ghi Chú</span> <input type='text' th:value="${chuThich}"
-						th:name="ghiChu" />
+						th:name="ghiChu" required/>
 				</div>
 				<div>
 					<span>Tên Người lập</span> <input type='text'

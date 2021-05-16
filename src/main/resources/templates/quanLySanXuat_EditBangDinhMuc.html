@@ -18,15 +18,15 @@
 	<div class="header">
 		<p th:text="${session.hoTenSanXuat}" class="header__username"
 			th:unless="${session==null}"></p>
-		<a th:href="@{/listSanPham_SX}" class="header__main">Danh Sách Sản
-			Phẩm</a><a th:href="@{/listThanhPham_SX}" class="header__main">Danh
-			Sách Thành Phẩm</a> <a th:href="@{/logout}" class="header__logout">Đăng
+		<a th:href="@{/ListSanPham_SX}" class="header__main">Danh Sách Sản
+			Phẩm</a><a th:href="@{/ListThanhPham_SX}" class="header__main">Danh
+			Sách Thành Phẩm</a> <a th:href="@{/Logout}" class="header__logout">Đăng
 			xuất</a>
 	</div>
 
 	<div class="slider">Sửa Bảng Định Mức</div>
 	<div class="content">
-		<form th:action="@{/active_EditBangDinhMuc}" method='GET'
+		<form th:action="@{/Active_EditBangDinhMuc}" method='GET'
 			class="content__form">
 			<div class="content__table">
 				<div>
@@ -39,11 +39,11 @@
 				</div>
 				<div>
 					<span>Tên NVL</span> <input type='text' th:value="${tenNVL}"
-						th:name="tenNVL" />
+						th:name="tenNVL" required/>
 				</div>
 				<div>
 					<span>Số Lượng</span> <input type='text' th:value="${soLuong}"
-						th:name="soLuong" />
+						th:name="soLuong" required/>
 				</div>
 				<div>
 					<span>Nhân Viên Lên BDM</span> <input type='text'

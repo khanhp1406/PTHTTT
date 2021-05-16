@@ -17,33 +17,33 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/phieudathang}"
-			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/Phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">Thêm mới Phiếu Thu</div>
 	<div class="content">
-		<form th:action="@{/active_AddPhieuThu}" method='GET'
+		<form th:action="@{/Active_AddPhieuThu}" method='GET'
 			class="content__form">
 			<div class="content__table">
 				<div>
-					<span>Mã Số Phiếu</span> <input type='text' th:name="soPhieu" />
+					<span>Mã Số Phiếu</span> <input type='text' th:name="soPhieu" required/>
 				</div>
 				<div>
-					<span>Loại Phiếu</span> <input type='text' th:name="loaiPhieu" />
+					<span>Loại Phiếu</span> <input type='text' th:name="loaiPhieu" required/>
 				</div>
 				<div>
-					<span>Ngày Tạo Phiếu</span> <input type='text' th:name="ngay" />
+					<span>Ngày Tạo Phiếu</span> <input type='text' th:name="ngay" required/>
 				</div>
 				<div>
-					<span>Nội Dung </span> <input type='text' th:name="noiDung" />
+					<span>Nội Dung </span> <input type='text' th:name="noiDung" required/>
 				</div>
 				<div>
-					<span>Chú Thích</span> <input type='text' th:name="chuThich" />
+					<span>Chú Thích</span> <input type='text' th:name="chuThich" required/>
 				</div>
 				<div>
-					<span>Tiền Đặt Cọc</span> <input type='text' th:name="tienDatCoc" />
+					<span>Tiền Đặt Cọc</span> <input type='text' th:name="tienDatCoc" required/>
 				</div>
 				<div>
 					<span>Mã Phiếu Đặt Hàng</span> <input type='text'

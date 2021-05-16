@@ -17,17 +17,16 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/phieudathang}"
-			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/Phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
 	<div class="slider">
-		<!-- <a th:href="@{/phieudathang}">Phiếu Đặt Hàng</a>  -->
 		Thêm mới Phiếu Đặt Hàng
 	</div>
 	<div class="content">
-		<form th:action="@{/active_AddPhieuDatHang}" method='GET'
+		<form th:action="@{/Active_AddPhieuDatHang}" method='GET'
 			class="content__form">
 			<div class="content__table">
 				<div>
@@ -46,7 +45,7 @@
 						th:name="diaChiKH" required />
 				</div>
 				<div>
-					<span>Ngày Lập</span> <input type='text' th:name="ngayLap" />
+					<span>Ngày Lập</span> <input type='text' th:name="ngayLap" required/>
 				</div>
 				<div>
 					<span>Ngày Giao Hàng</span> <input type='text'

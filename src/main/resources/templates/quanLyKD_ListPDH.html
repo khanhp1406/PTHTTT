@@ -17,8 +17,8 @@
 <body class="screen">
 	<div class="header">
 		<span th:text="${session.hoTenKinhDoanh}" th:unless="${session==null}"
-			class="header__username"></span> <a th:href="@{/phieudathang}"
-			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/logout}"
+			class="header__username"></span> <a th:href="@{/Phieudathang}"
+			class="header__main">Phiếu Đặt Hàng</a> <a th:href="@{/Logout}"
 			class="header__logout">Đăng xuất</a>
 	</div>
 
@@ -41,7 +41,7 @@
 						<th>Trạng Thái</th>
 						<th>Ghi Chú</th>
 						<th>Tên người lập</th>
-						<th colspan="4"><a th:href="@{AddPhieuDatHang}">Tạo Phiếu
+						<th colspan="4"><a th:href="@{/AddPhieuDatHang}">Tạo Phiếu
 								Đặt Hàng</a></th>
 					</tr>
 					<tr th:each="pdh,state:${pdhs}">
@@ -56,14 +56,14 @@
 						<td th:utext="${pdh.chuThich}"></td>
 						<td th:utext="${pdh.nhanVien.getHoTen()}"></td>
 						<td class="table__icon"><a
-							th:href="@{/listPhieuThu/}+${pdh.ID}">Danh Sách Phiếu Thu</a></td>
+							th:href="@{/ListPhieuThu/}+${pdh.ID}">Danh Sách Phiếu Thu</a></td>
 						<td class="table__icon"><a
-							th:href="@{/addPhieuThu/}+${pdh.ID}">Add Phiếu Thu</a></td>
+							th:href="@{/AddPhieuThu/}+${pdh.ID}">Add Phiếu Thu</a></td>
 						<td class="table__icon"><a
-							th:href="@{/editPhieuDatHang/}+${pdh.ID}"><i
+							th:href="@{/EditPhieuDatHang/}+${pdh.ID}"><i
 								class="fa fa-edit" title="Edit"></i></a></td>
 						<td class="table__icon"><a
-							th:href="@{/removePhieuDatHang/}+${pdh.ID}"><i
+							th:href="@{/RemovePhieuDatHang/}+${pdh.ID}"><i
 								class="fas fa-trash-alt" title="Remove"></i></a></td>
 					</tr>
 				</table>
@@ -80,7 +80,7 @@
 						<th>Số Lượng Trong Xưởng</th>
 						<th>Tình Trạng</th>
 						<th>Loại Giá</th>
-						<th colspan="2"><a th:href="@{AddThanhPham}">Thêm Thành
+						<th colspan="2"><a th:href="@{/AddThanhPham}">Thêm Thành
 								Phẩm</a></th>
 					</tr>
 					<tr th:each="tp,state:${tps}">
@@ -95,10 +95,10 @@
 						<td th:utext="${tp.tinhTrang}"></td>
 						<td th:utext="${tp.loaiGia}"></td>
 						<td class="table__icon"><a
-							th:href="@{/editThanhPham/}+${tp.ID}"><i class="fa fa-edit"
+							th:href="@{/EditThanhPham/}+${tp.ID}"><i class="fa fa-edit"
 								title="Edit"></i></a></td>
 						<td class="table__icon"><a
-							th:href="@{/removeThanhPham/}+${tp.ID}"><i
+							th:href="@{/RemoveThanhPham/}+${tp.ID}"><i
 								class="fas fa-trash-alt" title="Remove"></i></a></td>
 					</tr>
 				</table>

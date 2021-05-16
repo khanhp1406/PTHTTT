@@ -18,15 +18,15 @@
 	<div class="header">
 		<p th:text="${session.hoTenSanXuat}" class="header__username"
 			th:unless="${session==null}"></p>
-		<a th:href="@{/listSanPham_SX}" class="header__main">Danh Sách Sản
-			Phẩm</a><a th:href="@{/listThanhPham_SX}" class="header__main">Danh
-			Sách Thành Phẩm</a> <a th:href="@{/logout}" class="header__logout">Đăng
+		<a th:href="@{/ListSanPham_SX}" class="header__main">Danh Sách Sản
+			Phẩm</a><a th:href="@{/ListThanhPham_SX}" class="header__main">Danh
+			Sách Thành Phẩm</a> <a th:href="@{/Logout}" class="header__logout">Đăng
 			xuất</a>
 	</div>
 
 	<div class="slider">Sửa Công Đoạn Sản Xuất</div>
 	<div class="content">
-		<form th:action="@{/active_EditCongDoanSanXuat}" method='GET'
+		<form th:action="@{/Active_EditCongDoanSanXuat}" method='GET'
 			class="content__form">
 			<div class="content__table">
 				<div>
@@ -39,15 +39,15 @@
 				</div>
 				<div>
 					<span>Tên Công Đoạn</span> <input type='text'
-						th:value="${tenCongDoan}" th:name="tenCongDoan" />
+						th:value="${tenCongDoan}" th:name="tenCongDoan" required/>
 				</div>
 				<div>
 					<span>Thời Gian Hoàn Thiện</span> <input type='text'
-						th:value="${thoiGianHoanThien}" th:name="thoiGianHoanThien" />
+						th:value="${thoiGianHoanThien}" th:name="thoiGianHoanThien" required/>
 				</div>
 				<div>
 					<span>Mô Tả</span> <input type='text' th:value="${moTa}"
-						th:name="moTa" />
+						th:name="moTa" required/>
 				</div>
 				<div>
 					<input name="submit" type="submit" value="submit" />

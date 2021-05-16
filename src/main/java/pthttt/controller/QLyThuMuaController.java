@@ -72,7 +72,7 @@ public class QLyThuMuaController {
 	@Autowired
 	private PhieuChiService phieuChiService;
 
-	@GetMapping("/listLenhSanXuat_TM")
+	@GetMapping("/ListLenhSanXuat_TM")
 	public String listLenhSanXuat_TM(Model model) {
 		List<LenhSanXuat> listlsx = new ArrayList<LenhSanXuat>();
 		listlsx = lenhSanXuatService.findAllLenhSanXuat();
@@ -80,7 +80,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_ListLenhSanXuat";
 	}
 
-	@GetMapping("/listPhieuMuaNVL/{ID}")
+	@GetMapping("/ListPhieuMuaNVL/{ID}")
 	public String listPhieuMuaNVL(@PathVariable int ID, @ModelAttribute LenhSanXuat lenhSanXuat, Model model,
 			HttpSession session, //
 			@ModelAttribute PhieuDatHang phieuDatHang, @ModelAttribute SanPham sanPham) {
@@ -105,7 +105,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_ListPhieuMuaNVL";
 	}
 
-	@GetMapping("/listNVLCanDung/{ID}")
+	@GetMapping("/ListNVLCanDung/{ID}")
 	public String listNVLCanDung(@PathVariable int ID, @ModelAttribute PhieuMuaNVL phieuMuaNVL, Model model,
 			HttpSession session) {
 		phieuMuaNVL = phieuMuaNVLService.findOneByID(ID);
@@ -117,7 +117,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_ListNVLCanDung";
 	}
 
-	@GetMapping("/editPhieuMuaNVL/{ID}")
+	@GetMapping("/EditPhieuMuaNVL/{ID}")
 	public String editPhieuMuaNVL(@PathVariable int ID, @ModelAttribute PhieuMuaNVL phieuMuaNVL, Model model) {
 		phieuMuaNVL = phieuMuaNVLService.findOneByID(ID);
 		model.addAttribute("chuThich", phieuMuaNVL.getChuThich());
@@ -129,7 +129,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_EditPhieuMuaNVL";
 	}
 
-	@GetMapping("/active_EditPhieuMuaNVL")
+	@GetMapping("/Active_EditPhieuMuaNVL")
 	public String active_EditPhieuMuaNVL(@RequestParam("chuThich") String chuThich, @RequestParam("ID") int ID,
 			@RequestParam("IDLenhSanXuat") int IDLenhSanXuat, //
 			@RequestParam("maPhieu") String maPhieu, @RequestParam("ngayLap") String ngayLap,
@@ -147,10 +147,10 @@ public class QLyThuMuaController {
 		phieuMuaNVL.setNhanVien(nhanVien);
 
 		phieuMuaNVLService.save(phieuMuaNVL);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 
-	@GetMapping("/removePhieuMuaNVL/{ID}")
+	@GetMapping("/RemovePhieuMuaNVL/{ID}")
 	public String removePhieuMuaNVL(@PathVariable int ID, @ModelAttribute PhieuMuaNVL phieuMuaNVL) {
 		phieuMuaNVL = phieuMuaNVLService.findOneByID(ID);
 		if (nvlCanDungService.check(phieuMuaNVL) || phieuChiService.check(phieuMuaNVL)) {
@@ -158,7 +158,7 @@ public class QLyThuMuaController {
 		} else {
 			phieuMuaNVLService.delete(ID);
 		}
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 
 	@GetMapping("/AddPhieuMuaNVL")
@@ -168,7 +168,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_AddPhieuMuaNVL";
 	}
 
-	@GetMapping("/active_AddPhieuMuaNVL")
+	@GetMapping("/Active_AddPhieuMuaNVL")
 	public String active_AddPhieuMuaNVL(@RequestParam("maPhieu") String maPhieu,
 			@RequestParam("ngayLap") String ngayLap, @RequestParam("chuThich") String chuThich, //
 			@RequestParam("hoTenThuMua") String hoTenThuMua, @ModelAttribute PhieuMuaNVL phieuMuaNVL,
@@ -184,7 +184,7 @@ public class QLyThuMuaController {
 		phieuMuaNVL.setNhanVien(nhanVien);
 
 		phieuMuaNVLService.save(phieuMuaNVL);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 
 	@GetMapping("/AddNVLCanDung")
@@ -192,7 +192,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_AddNVLCanDung";
 	}
 
-	@GetMapping("/active_AddNVLCanDung")
+	@GetMapping("/Active_AddNVLCanDung")
 	public String active_AddNVLCanDung(@RequestParam("soLuong") int soLuong, @RequestParam("tenNVL") String tenNVL,
 			HttpSession session, @ModelAttribute Xuong xuong, //
 			@ModelAttribute NguyenVatLieu nguyenVatLieu, @ModelAttribute NVLCanDung nvlCanDung,
@@ -208,18 +208,18 @@ public class QLyThuMuaController {
 		nvlCanDung.setXuong(xuong);
 
 		nvlCanDungService.save(nvlCanDung);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 
-	@GetMapping("/removeNVLCanDung/{ID}")
+	@GetMapping("/RemoveNVLCanDung/{ID}")
 	public String removeNVLCanDung(@PathVariable int ID, @ModelAttribute NVLCanDung nvlCanDung) {
 		nvlCanDung = nvlCanDungService.findOne(ID);
 
 		nvlCanDungService.delete(nvlCanDung);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 
-	@GetMapping("/listPhieuChi/{ID}")
+	@GetMapping("/ListPhieuChi/{ID}")
 	public String listPhieuChi(@PathVariable int ID, @ModelAttribute PhieuMuaNVL phieuMuaNVL, Model model,
 			HttpSession sesion) {
 		phieuMuaNVL = phieuMuaNVLService.findOneByID(ID);
@@ -236,7 +236,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_AddPhieuChi";
 	}
 
-	@GetMapping("/active_AddPhieuChi")
+	@GetMapping("/Active_AddPhieuChi")
 	public String active_AddPhieuMuaNVL(@RequestParam("soPhieu")String soPhieu,@RequestParam("loaiPhieu")String loaiPhieu,//
 			@RequestParam("ngay")String ngay,@RequestParam("noiDung")String noiDung,@RequestParam("giaThanh")float giaThanh,//
 			@ModelAttribute PhieuChi phieuChi,@ModelAttribute PhieuMuaNVL phieuMuaNVL,HttpSession session ) {
@@ -251,10 +251,10 @@ public class QLyThuMuaController {
 		phieuChi.setSoPhieu(soPhieu);
 		
 		phieuChiService.save(phieuChi);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 	
-	@GetMapping("/editPhieuChi/{ID}")
+	@GetMapping("/AditPhieuChi/{ID}")
 	public String editPhieuMuaNVL(@PathVariable int ID,@ModelAttribute PhieuChi phieuChi,Model model) {
 		phieuChi =phieuChiService.findOne(ID);
 		
@@ -268,7 +268,7 @@ public class QLyThuMuaController {
 		return "quanLyThuMua_EditPhieuChi";
 	}
 	
-	@GetMapping("/active_EditPhieuChi")
+	@GetMapping("/Active_EditPhieuChi")
 	public String active_EditPhieuChi(@RequestParam("giaThanh")float giaThanh,@RequestParam("ID")int ID,@RequestParam("loaiPhieu")String loaiPhieu,//
 			@RequestParam("ngay")String ngay,@RequestParam("noiDung")String noiDung,@RequestParam("maPhieuNVL")String maPhieuNVL,//
 			@RequestParam("soPhieu")String soPhieu,@ModelAttribute PhieuChi phieuChi,@ModelAttribute PhieuMuaNVL phieuMuaNVL) {
@@ -282,12 +282,12 @@ public class QLyThuMuaController {
 		phieuChi.setSoPhieu(soPhieu);
 		
 		phieuChiService.save(phieuChi);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 	
-	@GetMapping("/removePhieuChi/{ID}")
+	@GetMapping("/RemovePhieuChi/{ID}")
 	public String removePhieuChi(@PathVariable int ID,@ModelAttribute PhieuChi phieuChi) {
 		phieuChiService.delete(ID);
-		return "redirect:/listLenhSanXuat_TM";
+		return "redirect:/ListLenhSanXuat_TM";
 	}
 }

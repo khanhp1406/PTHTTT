@@ -20,9 +20,9 @@
 	<div class="header">
 	<p th:text="${session.hoTenSanXuat}" class="header__username"
 			th:unless="${session==null}"></p>
-		<a th:href="@{/listSanPham_SX}" class="header__main">Danh Sách Sản
-			Phẩm</a><a th:href="@{/listThanhPham_SX}" class="header__main">Danh
-			Sách Thành Phẩm</a> <a th:href="@{/logout}" class="header__logout">Đăng
+		<a th:href="@{/ListSanPham_SX}" class="header__main">Danh Sách Sản
+			Phẩm</a><a th:href="@{/ListThanhPham_SX}" class="header__main">Danh
+			Sách Thành Phẩm</a> <a th:href="@{/Logout}" class="header__logout">Đăng
 			xuất</a>
 	</div>
 
@@ -55,10 +55,10 @@
 						<td th:utext="${bdm.soLuong}"></td>
 						<td th:utext="${bdm.nhanVien.getHoTen()}"></td>
 						<td style="text-align: center;"><a
-							th:href="@{/editBangDinhMuc/}+${bdm.ID}"><i
+							th:href="@{/EditBangDinhMuc/}+${bdm.ID}"><i
 								class="fa fa-edit"></i></a></td>
 						<td style="text-align: center;"><a
-							th:href="@{/removeBangDinhMuc/}+${bdm.ID}"><i
+							th:href="@{/RemoveBangDinhMuc/}+${bdm.ID}"><i
 								class="fas fa-trash-alt	"></i></a></td>
 					</tr>
 				</table>

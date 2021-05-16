@@ -62,7 +62,7 @@ public class QLySanXuatController {
 	@Autowired
 	private PhieuLuuChuyenService phieuLuuChuyenService;
 
-	@GetMapping("/listSanPham_SX")
+	@GetMapping("/ListSanPham_SX")
 	public String listSanPham(Model model) {
 		List<SanPham> listsp = new ArrayList<SanPham>();
 		listsp = sanPhamService.findAllSanPham();
@@ -70,7 +70,7 @@ public class QLySanXuatController {
 		return "quanLySanXuat_ListSanPham";
 	}
 
-	@GetMapping("/listBangDinhMuc/{ID}")
+	@GetMapping("/ListBangDinhMuc/{ID}")
 	public String listBangDinhMuc(Model model, @PathVariable int ID, @ModelAttribute SanPham sanPham) {
 		sanPham = sanPhamService.findSanPhamByID(ID);
 		List<BangDinhMuc> listbdm = new ArrayList<BangDinhMuc>();
@@ -79,7 +79,7 @@ public class QLySanXuatController {
 		return "quanLySanXuat_ListBangDinhMuc";
 	}
 
-	@GetMapping("/listCongDoanSanXuat/{ID}")
+	@GetMapping("/ListCongDoanSanXuat/{ID}")
 	public String listCongDoanSanXuat(Model model, @PathVariable int ID, @ModelAttribute SanPham sanPham) {
 		sanPham = sanPhamService.findSanPhamByID(ID);
 		List<CongDoanSX> liscdsx = new ArrayList<CongDoanSX>();
@@ -88,14 +88,14 @@ public class QLySanXuatController {
 		return "quanLySanXuat_ListCongDoanSanXuat";
 	}
 
-	@GetMapping("/addCongDoanSanXuat/{ID}")
+	@GetMapping("/AddCongDoanSanXuat/{ID}")
 	public String addCongDoanSanXuat(@PathVariable int ID, @ModelAttribute SanPham sanPham, Model model) {
 		sanPham = sanPhamService.findSanPhamByID(ID);
 		model.addAttribute("tenSanPham", sanPham.getTenSP());
 		return "quanLySanXuat_AddCongDoanSanXuat";
 	}
 
-	@GetMapping("/active_AddCongDoanSanXuat")
+	@GetMapping("/Active_AddCongDoanSanXuat")
 	public String active_AddCongDoanSanXuat(@ModelAttribute CongDoanSX congDoanSX,
 			@RequestParam("tenSanPham") String tenSanPham, //
 			@RequestParam("tenCongDoan") String tenCongDoan,
@@ -108,10 +108,10 @@ public class QLySanXuatController {
 		congDoanSX.setThoiGianHoanThien(thoiGianHoanThien);
 
 		congDoanSXService.save(congDoanSX);
-		return "redirect:/listSanPham_SX";
+		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/addBangDinhMuc/{ID}")
+	@GetMapping("/AddBangDinhMuc/{ID}")
 	public String addBangDinhMuc(@PathVariable int ID, @ModelAttribute SanPham sanPham, Model model,
 			HttpSession session) {
 		sanPham = sanPhamService.findSanPhamByID(ID);
@@ -121,7 +121,7 @@ public class QLySanXuatController {
 		return "quanLySanXuat_AddBangDinhMuc";
 	}
 
-	@GetMapping("/active_AddBangDinhMuc")
+	@GetMapping("/Active_AddBangDinhMuc")
 	public String active_AddBangDinhMuc(@RequestParam("tenSanPham") String tenSanPham,
 			@RequestParam("tenNVL") String tenNVL, //
 			@RequestParam("soLuong") int soLuong, @RequestParam("hoTenSanXuat") String hoTenSanXuat,
@@ -137,10 +137,10 @@ public class QLySanXuatController {
 		bangDinhMuc.setSoLuong(soLuong);
 
 		bangDinhMucService.save(bangDinhMuc);
-		return "redirect:/listSanPham_SX";
+		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/editBangDinhMuc/{ID}")
+	@GetMapping("/EditBangDinhMuc/{ID}")
 	public String editBangDinhMuc(@PathVariable int ID, @ModelAttribute BangDinhMuc bangDinhMuc, Model model) {
 		bangDinhMuc = bangDinhMucService.findByID(ID);
 		model.addAttribute("ID", ID);
@@ -151,7 +151,7 @@ public class QLySanXuatController {
 		return "quanLySanXuat_EditBangDinhMuc";
 	}
 
-	@GetMapping("/active_EditBangDinhMuc")
+	@GetMapping("/Active_EditBangDinhMuc")
 	public String active_EditBangDinhMuc(@RequestParam("ID") int ID, @RequestParam("tenSanPham") String tenSanPham,
 			@RequestParam("tenNVL") String tenNVL, //
 			@RequestParam("soLuong") int soluong, @RequestParam("hoTenSanXuat") String hoTenSanXuat,
@@ -169,17 +169,17 @@ public class QLySanXuatController {
 		bangDinhMuc.setSoLuong(soluong);
 
 		bangDinhMucService.save(bangDinhMuc);
-		return "redirect:/listSanPham_SX";
+		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/removeBangDinhMuc/{ID}")
+	@GetMapping("/LemoveBangDinhMuc/{ID}")
 	public String removeBangDinhMuc(@PathVariable int ID, @ModelAttribute BangDinhMuc bangDinhMuc) {
 		bangDinhMuc = bangDinhMucService.findByID(ID);
 		bangDinhMucService.deleteBangDinhMuc(bangDinhMuc);
-		return "redirect:/listSanPham_SX";
+		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/editCongDoanSanXuat/{ID}")
+	@GetMapping("/EditCongDoanSanXuat/{ID}")
 	public String editCongDoanSanXuat(@PathVariable int ID, Model model, @ModelAttribute CongDoanSX congDoanSX) {
 		congDoanSX = congDoanSXService.findOneByID(ID);
 
@@ -191,7 +191,7 @@ public class QLySanXuatController {
 		return "quanLySanXuat_EditCongDoanSanXuat";
 	}
 
-	@GetMapping("/active_EditCongDoanSanXuat")
+	@GetMapping("/Active_EditCongDoanSanXuat")
 	public String active_EditCongDoanSanXuat(@RequestParam("ID") int ID, @RequestParam("tenSanPham") String tenSanPham,
 			@RequestParam("tenCongDoan") String tenCongDoan, //
 			@RequestParam("thoiGianHoanThien") String thoiGianHoanThien, @RequestParam("moTa") String moTa,
@@ -205,17 +205,17 @@ public class QLySanXuatController {
 		congDoanSX.setThoiGianHoanThien(thoiGianHoanThien);
 
 		congDoanSXService.save(congDoanSX);
-		return "redirect:/listSanPham_SX";
+		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/removeCongDoanSanXuat/{ID}")
+	@GetMapping("/RemoveCongDoanSanXuat/{ID}")
 	public String removeCongDoanSanXuat(@PathVariable int ID, @ModelAttribute CongDoanSX congDoanSX) {
 		congDoanSX = congDoanSXService.findOneByID(ID);
 		congDoanSXService.deleteCongDoanSX(congDoanSX);
-		return "redirect:/listSanPham_SX";
+		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/listThanhPham_SX")
+	@GetMapping("/ListThanhPham_SX")
 	public String listThanhPham_SX(Model model) {
 		List<ThanhPham> listtp = new ArrayList<ThanhPham>();
 		listtp = thanhPhamService.findAllThanhPhams();
@@ -237,7 +237,7 @@ public class QLySanXuatController {
 		thanhPham.setXuong(thanhPham.getXuong());
 
 		thanhPhamService.saveThanhPham(thanhPham);
-		return "redirect:/listThanhPham_SX";
+		return "redirect:/ListThanhPham_SX";
 	}
 
 	@GetMapping("/CHTThanhPham/{ID}")
@@ -254,10 +254,10 @@ public class QLySanXuatController {
 		thanhPham.setXuong(thanhPham.getXuong());
 
 		thanhPhamService.saveThanhPham(thanhPham);
-		return "redirect:/listThanhPham_SX";
+		return "redirect:/ListThanhPham_SX";
 	}
 
-	@GetMapping("/addPhieuLuuChuyen/{ID}")
+	@GetMapping("/AddPhieuLuuChuyen/{ID}")
 	public String addPhieuLuuChuyen(@PathVariable int ID, HttpSession session, @ModelAttribute Kho kho,
 			@ModelAttribute Xuong xuong, Model model, @ModelAttribute ThanhPham thanhPham) {
 		thanhPham = thanhPhamService.findOneThanhPhamByID(ID);
@@ -272,10 +272,10 @@ public class QLySanXuatController {
 			return "quanLySanXuat_AddPhieuLuuChuyen";
 		}
 
-		else return "redirect:/listThanhPham_SX";
+		else return "redirect:/ListThanhPham_SX";
 	}
 
-	@GetMapping("/active_AddPhieuLuuChuyen")
+	@GetMapping("/Active_AddPhieuLuuChuyen")
 	public String active_AddPhieuLuuChuyen(HttpSession session, @ModelAttribute Kho kho, @ModelAttribute Xuong xuong,
 			@ModelAttribute ThanhPham thanhPham, @RequestParam("ngayLap") String ngayLap,
 			@RequestParam("chuThich") String chuThich, //
@@ -305,7 +305,7 @@ public class QLySanXuatController {
 
 			thanhPhamService.saveThanhPham(thanhPham);
 		}
-		return "redirect:/listThanhPham_SX";
+		return "redirect:/ListThanhPham_SX";
 	}
 	
 }

@@ -36,7 +36,7 @@ public class QLyKyThuatController {
 	@Autowired
 	private NhanVienService nhanVienService;
 	
-	@GetMapping("/phieuDatHang_KT")
+	@GetMapping("/PhieuDatHang_KT")
 	public String listPhieuDatHang(Model model) {
 		List<PhieuDatHang> listpdh=new ArrayList<PhieuDatHang>();
 		listpdh=phieuDatHangService.findAllPhieuDatHang();
@@ -44,7 +44,7 @@ public class QLyKyThuatController {
 		return "quanLyKT_ListPhieuDatHang";
 	}
 	
-	@GetMapping("/listLenhSanXuat/{ID}")
+	@GetMapping("/ListLenhSanXuat/{ID}")
 	public String listLenhSanXuat(Model model,@PathVariable int ID,@ModelAttribute PhieuDatHang phieuDatHang) {
 		phieuDatHang=phieuDatHangService.findOnePhieuDatHangByID(ID);
 		List<LenhSanXuat> listlsx=new ArrayList<LenhSanXuat>();
@@ -53,18 +53,18 @@ public class QLyKyThuatController {
 		return "quanLyKT_ListLenhSanXuat";
 	}
 	
-	@GetMapping("/removeLenhSanXuat/{ID}")
+	@GetMapping("/RemoveLenhSanXuat/{ID}")
 	public String removeLenhSanXuat(@PathVariable int ID,@ModelAttribute LenhSanXuat lenhSanXuat) {
 		lenhSanXuat=lenhSanXuatService.findOneByID(ID);
 		if(phieuMuaNVLService.existsLenhSanXuat(lenhSanXuat)) {
-			return "redirect:/phieuDatHang_KT";
+			return "redirect:/PhieuDatHang_KT";
 		}else {
 			lenhSanXuatService.removeLenhSanXuat(lenhSanXuat);
 		}
-		return "redirect:/phieuDatHang_KT";
+		return "redirect:/PhieuDatHang_KT";
 	}
 	
-	@GetMapping("/editLenhSanXuat/{ID}")
+	@GetMapping("/EditLenhSanXuat/{ID}")
 	public String editLenhSanXuat(@ModelAttribute LenhSanXuat lenhSanXuat,Model model,@PathVariable int ID) {
 		lenhSanXuat=lenhSanXuatService.findOneByID(ID);
 		model.addAttribute("ID", lenhSanXuat.getID());
@@ -77,7 +77,7 @@ public class QLyKyThuatController {
 		return "quanLyKT_EditLenhSanXuat";
 	}
 	
-	@GetMapping("/active_EditLenhSanXuat")
+	@GetMapping("/Active_EditLenhSanXuat")
 	public String active_EditLenhSanXuat(@ModelAttribute LenhSanXuat lenhSanXuat,@RequestParam("ID")int ID,@RequestParam("tenNhanVien")String tenNhanVien,//
 			@RequestParam("maPhieuDatHang")String maPhieuDatHang,@RequestParam("ngayBatDauSP")String ngayBatDauSP,@RequestParam("ngayXuatSP")String ngayXuatSP,//
 			@RequestParam("trangThai")String trangThai,@RequestParam("chuThich")String chuThich,@ModelAttribute PhieuDatHang phieuDatHang,@ModelAttribute NhanVien nhanVien) {
@@ -93,10 +93,10 @@ public class QLyKyThuatController {
 		lenhSanXuat.setTrangThai(trangThai);
 		
 		lenhSanXuatService.save(lenhSanXuat);
-		return "redirect:/phieuDatHang_KT";
+		return "redirect:/PhieuDatHang_KT";
 	}
 	
-	@GetMapping("/addLenhSanXuat/{ID}")
+	@GetMapping("/AddLenhSanXuat/{ID}")
 	public String addLenhSanXuat(Model model,@PathVariable int ID,@ModelAttribute PhieuDatHang phieuDatHang,HttpSession session) {
 		phieuDatHang=phieuDatHangService.findOnePhieuDatHangByID(ID);
 		model.addAttribute("maPhieuDatHang", phieuDatHang.getMaPhieu());
@@ -106,7 +106,7 @@ public class QLyKyThuatController {
 		return "quanLyKT_AddLenhSanXuat";
 	}
 	
-	@GetMapping("/active_AddLenhSanXuat")
+	@GetMapping("/Active_AddLenhSanXuat")
 	public String active_AddLenhSanXuat(@ModelAttribute LenhSanXuat lenhSanXuat,@RequestParam("tenNhanVien")String tenNhanVien,@RequestParam("maPhieuDatHang")String maPhieuDatHang,//
 			@RequestParam("ngayBatDauSP")String ngayBatDauSP,@RequestParam("ngayXuatSP")String ngayXuatSP,@RequestParam("trangThai")String trangThai,//
 			@RequestParam("chuThich")String chuThich,@ModelAttribute PhieuDatHang phieuDatHang,@ModelAttribute NhanVien nhanVien) {
@@ -121,6 +121,6 @@ public class QLyKyThuatController {
 		lenhSanXuat.setTrangThai(trangThai);
 		
 		lenhSanXuatService.save(lenhSanXuat);
-		return "redirect:/phieuDatHang_KT";
+		return "redirect:/PhieuDatHang_KT";
 	}
 }

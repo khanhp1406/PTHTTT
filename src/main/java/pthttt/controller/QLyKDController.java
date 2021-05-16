@@ -50,7 +50,7 @@ public class QLyKDController {
 	@Autowired
 	private LenhSanXuatService lenhSanXuatService;
 	
-	@GetMapping("/phieudathang")
+	@GetMapping("/Phieudathang")
 	public String listPhieuDatHang(Model model) {
 		List<PhieuDatHang> listpdh = new ArrayList<PhieuDatHang>();
 		List<ThanhPham> listTP = new ArrayList<ThanhPham>();
@@ -68,7 +68,7 @@ public class QLyKDController {
 		return "quanLyKD_AddPDH";
 	}
 
-	@GetMapping("/active_AddPhieuDatHang")
+	@GetMapping("/Active_AddPhieuDatHang")
 	public String active_AddPhieuDatHang(@ModelAttribute NhanVien nhanVien, @ModelAttribute PhieuDatHang phieuDatHang, //
 			@RequestParam("maPhieu") String maPhieu, @RequestParam("tenKH") String tenKH,
 			@RequestParam("sdtKH") String sdtKH, //
@@ -90,14 +90,14 @@ public class QLyKDController {
 			phieuDatHang.setNhanVien(nhanVien);
 
 			pdhService.savePhieuDatHang(phieuDatHang);
-			return "redirect:/phieudathang";
+			return "redirect:/Phieudathang";
 		} else {
 			session.setAttribute("error", "Tên không hợp lệ!");
 			return "redirect:/AddPhieuDatHang";
 		}
 	}
 
-	@GetMapping("/editPhieuDatHang/{ID}")
+	@GetMapping("/EditPhieuDatHang/{ID}")
 	public String editPhieuDatHang(Model model, @PathVariable int ID, @ModelAttribute PhieuDatHang phieuDatHang) {
 		phieuDatHang = pdhService.findOnePhieuDatHangByID(ID);
 		model.addAttribute("ID", phieuDatHang.getID());
@@ -113,7 +113,7 @@ public class QLyKDController {
 		return "quanLyKD_EditPDH";
 	}
 
-	@GetMapping("/active_EditPhieuDatHang")
+	@GetMapping("/Active_EditPhieuDatHang")
 	public String active_EditPhieuDatHang(@ModelAttribute NhanVien nhanVien, @ModelAttribute PhieuDatHang phieuDatHang, //
 			@RequestParam("ID") int ID, @RequestParam("maPhieu") String maPhieu, @RequestParam("tenKH") String tenKH,
 			@RequestParam("sdtKH") String sdtKH, //
@@ -135,20 +135,20 @@ public class QLyKDController {
 		phieuDatHang.setNhanVien(nhanVien);
 
 		pdhService.savePhieuDatHang(phieuDatHang);
-		return "redirect:/phieudathang";
+		return "redirect:/Phieudathang";
 	}
 
-	@GetMapping("/removePhieuDatHang/{ID}")
+	@GetMapping("/RemovePhieuDatHang/{ID}")
 	public String removePhieuDatHang(@PathVariable int ID, @ModelAttribute ThanhPham thanhPham,
 			@ModelAttribute PhieuDatHang phieuDatHang) {
 
 		phieuDatHang = pdhService.findOnePhieuDatHangByID(ID);
 		if (thanhPhamService.checkThanhPhamByPhieuDatHang(phieuDatHang) ||phieuThuService.checkPhieuThuByPhieuDatHang(phieuDatHang)||
 				lenhSanXuatService.check(phieuDatHang)) {
-			return "redirect:/phieudathang";
+			return "redirect:/Phieudathang";
 		} else {
 			pdhService.delete(ID);
-			return "redirect:/phieudathang";
+			return "redirect:/Phieudathang";
 		}
 	}
 
@@ -158,7 +158,7 @@ public class QLyKDController {
 		return "quanLyKD_AddThanhPham";
 	}
 
-	@GetMapping("/active_AddThanhPham")
+	@GetMapping("/Active_AddThanhPham")
 	public String active_AddThanhPham(@RequestParam("maPhieu") String maPhieu, @RequestParam("tenSanPham") String tenSanPham,
 			@RequestParam("soLuong") int soLuong, //
 			@RequestParam("loaiGia") float loaiGia, @RequestParam("trangThai") String trangThai,
@@ -179,10 +179,10 @@ public class QLyKDController {
 		thanhPham.setTinhTrang("chưa giao");
 
 		thanhPhamService.saveThanhPham(thanhPham);
-		return "redirect:/phieudathang";
+		return "redirect:/Phieudathang";
 	}
 	
-	@GetMapping("/editThanhPham/{ID}")
+	@GetMapping("/EditThanhPham/{ID}")
 	public String editThanhPham(Model model, @PathVariable int ID, @ModelAttribute ThanhPham thanhPham) {
 		thanhPham = thanhPhamService.findOneThanhPhamByID(ID);
 		model.addAttribute("ID", ID);
@@ -195,7 +195,7 @@ public class QLyKDController {
 		return "quanLyKD_EditThanhPham";
 	}
 	
-	@GetMapping("/active_EditThanhPham")
+	@GetMapping("/Active_EditThanhPham")
 	public String active_EditThanhPham(@RequestParam("ID")int ID,@RequestParam("tenSanPham")String tenSanPham,//
 			@RequestParam("maPhieu")String maPhieu,//
 			@RequestParam("tenKH")String tenKH,@RequestParam("soLuong")int soLuong,//
@@ -216,15 +216,15 @@ public class QLyKDController {
 		thanhPham.setTinhTrang("chưa giao");
 		
 		thanhPhamService.saveThanhPham(thanhPham);;
-		return "redirect:/phieudathang";
+		return "redirect:/Phieudathang";
 	}
-	@GetMapping("/removeThanhPham/{ID}")
+	@GetMapping("/RemoveThanhPham/{ID}")
 	public String removeThanhPham(@PathVariable int ID) {
 		thanhPhamService.delete(ID);
-		return "redirect:/phieudathang";
+		return "redirect:/Phieudathang";
 	}
 
-	@GetMapping("/listPhieuThu/{ID}")
+	@GetMapping("/ListPhieuThu/{ID}")
 	public String listPhieuThu(Model model,@ModelAttribute PhieuDatHang phieuDatHang,@ModelAttribute ThanhPham thanhPham,@PathVariable int ID) {
 		List<PhieuThu> listpt=new ArrayList<PhieuThu>();
 		List<ThanhPham> listtp =new ArrayList<ThanhPham>();
@@ -248,14 +248,14 @@ public class QLyKDController {
 		return "quanLyKD_ListPhieuThu";
 	}
 
-	@GetMapping("/addPhieuThu/{ID}")
+	@GetMapping("/AddPhieuThu/{ID}")
 	public String addPhieuThu(Model model,@PathVariable int ID,@ModelAttribute PhieuDatHang phieuDatHang) {
 		phieuDatHang=pdhService.findOnePhieuDatHangByID(ID);
 		model.addAttribute("phieudathangID", phieuDatHang.getMaPhieu());
 		return "quanLyKD_AddPhieuThu";
 	}
 
-	@GetMapping("/active_AddPhieuThu")
+	@GetMapping("/Active_AddPhieuThu")
 	public String active_AddPhieuThu(@ModelAttribute PhieuThu phieuthu,@ModelAttribute PhieuDatHang phieuDatHang,//
 			@RequestParam("soPhieu") String soPhieu,//
 			@RequestParam("loaiPhieu")String loaiPhieu,@RequestParam("ngay")String ngay,@RequestParam("noiDung")String noiDung,//
@@ -271,16 +271,16 @@ public class QLyKDController {
 		phieuthu.setTienDatCoc(tienDatCoc);
 		
 		phieuThuService.savePhieuThu(phieuthu);
-		return "redirect:/phieudathang";
+		return "redirect:/Phieudathang";
 	}
 	
-	@GetMapping("/removePhieuThu/{ID}")
+	@GetMapping("/RemovePhieuThu/{ID}")
 	public String removePhieuThu(@PathVariable int ID) {
 		phieuThuService.removePhieuThu(ID);
 		return  "quanLyKD_ListPhieuThu";
 	}
 	
-	@GetMapping("/editPhieuThu/{ID}")
+	@GetMapping("/EditPhieuThu/{ID}")
 	public String editPhieuThu(@PathVariable int ID,@ModelAttribute PhieuThu phieuThu,Model model) {
 		phieuThu=phieuThuService.findOnePhieuTHuByID(ID);
 		model.addAttribute("ID", ID);
@@ -294,7 +294,7 @@ public class QLyKDController {
 		return "quanLyKD_EditPhieuThu" ;
 	}
 	
-	@GetMapping("/active_EditPhieuThu")
+	@GetMapping("/Active_EditPhieuThu")
 	public String active_EditPhieuThu(@ModelAttribute PhieuThu phieuthu,@ModelAttribute PhieuDatHang phieuDatHang,//
 			@RequestParam("ID")int ID,@RequestParam("soPhieu") String soPhieu,@RequestParam("maPhieuDatHang")String maPhieuDatHang,//
 			@RequestParam("loaiPhieu")String loaiPhieu,@RequestParam("ngay")String ngay,@RequestParam("noiDung")String noiDung,//
@@ -311,7 +311,7 @@ public class QLyKDController {
 		phieuthu.setTienDatCoc(tienDatCoc);
 		
 		phieuThuService.savePhieuThu(phieuthu);
-		return "quanLyKD_ListPhieuThu";
+		return "redirect:/Phieudathang";
 		
 	}
 }
