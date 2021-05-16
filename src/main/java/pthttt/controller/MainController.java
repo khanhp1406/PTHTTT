@@ -28,7 +28,7 @@ public class MainController {
 	@PostMapping("/CheckLogin")
 	public String processLogin(@RequestParam("tenDangNhap") String tenDangNhap, 
 			@RequestParam("matKhau") String matKhau, @ModelAttribute NhanVien nhanVien, HttpSession session) {
-
+	System.out.print("tenDangNhap");
 		if (nhanVienService.checkNhanVien(tenDangNhap, matKhau)) {
 			nhanVien = nhanVienService.findNhanVien(tenDangNhap, matKhau);
 			if (nhanVien.getBoPhan().equalsIgnoreCase("QLyKinhDoanh")) {
