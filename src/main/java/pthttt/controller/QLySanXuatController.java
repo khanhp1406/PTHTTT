@@ -172,7 +172,7 @@ public class QLySanXuatController {
 		return "redirect:/ListSanPham_SX";
 	}
 
-	@GetMapping("/LemoveBangDinhMuc/{ID}")
+	@GetMapping("/RemoveBangDinhMuc/{ID}")
 	public String removeBangDinhMuc(@PathVariable int ID, @ModelAttribute BangDinhMuc bangDinhMuc) {
 		bangDinhMuc = bangDinhMucService.findByID(ID);
 		bangDinhMucService.deleteBangDinhMuc(bangDinhMuc);

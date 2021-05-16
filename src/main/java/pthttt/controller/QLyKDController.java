@@ -50,7 +50,7 @@ public class QLyKDController {
 	@Autowired
 	private LenhSanXuatService lenhSanXuatService;
 	
-	@GetMapping("/Phieudathang")
+	@GetMapping("/PhieuDatHang")
 	public String listPhieuDatHang(Model model) {
 		List<PhieuDatHang> listpdh = new ArrayList<PhieuDatHang>();
 		List<ThanhPham> listTP = new ArrayList<ThanhPham>();
@@ -90,7 +90,7 @@ public class QLyKDController {
 			phieuDatHang.setNhanVien(nhanVien);
 
 			pdhService.savePhieuDatHang(phieuDatHang);
-			return "redirect:/Phieudathang";
+			return "redirect:/PhieuDatHang";
 		} else {
 			session.setAttribute("error", "Tên không hợp lệ!");
 			return "redirect:/AddPhieuDatHang";
@@ -135,7 +135,7 @@ public class QLyKDController {
 		phieuDatHang.setNhanVien(nhanVien);
 
 		pdhService.savePhieuDatHang(phieuDatHang);
-		return "redirect:/Phieudathang";
+		return "redirect:/PhieuDatHang";
 	}
 
 	@GetMapping("/RemovePhieuDatHang/{ID}")
@@ -148,7 +148,7 @@ public class QLyKDController {
 			return "redirect:/Phieudathang";
 		} else {
 			pdhService.delete(ID);
-			return "redirect:/Phieudathang";
+			return "redirect:/PhieuDatHang";
 		}
 	}
 
@@ -179,7 +179,7 @@ public class QLyKDController {
 		thanhPham.setTinhTrang("chưa giao");
 
 		thanhPhamService.saveThanhPham(thanhPham);
-		return "redirect:/Phieudathang";
+		return "redirect:/PhieuDatHang";
 	}
 	
 	@GetMapping("/EditThanhPham/{ID}")
@@ -216,7 +216,7 @@ public class QLyKDController {
 		thanhPham.setTinhTrang("chưa giao");
 		
 		thanhPhamService.saveThanhPham(thanhPham);;
-		return "redirect:/Phieudathang";
+		return "redirect:/PhieuDatHang";
 	}
 	@GetMapping("/RemoveThanhPham/{ID}")
 	public String removeThanhPham(@PathVariable int ID) {
@@ -271,7 +271,7 @@ public class QLyKDController {
 		phieuthu.setTienDatCoc(tienDatCoc);
 		
 		phieuThuService.savePhieuThu(phieuthu);
-		return "redirect:/Phieudathang";
+		return "redirect:/PhieuDatHang";
 	}
 	
 	@GetMapping("/RemovePhieuThu/{ID}")
@@ -311,7 +311,7 @@ public class QLyKDController {
 		phieuthu.setTienDatCoc(tienDatCoc);
 		
 		phieuThuService.savePhieuThu(phieuthu);
-		return "redirect:/Phieudathang";
+		return "redirect:/PhieuDatHang";
 		
 	}
 }
